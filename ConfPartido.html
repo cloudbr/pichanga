@@ -68,31 +68,53 @@
 		<li><a href="ConfPartido_Agregar.html">Agregar Jugadores</a></li>
 		<li><a href="ConfPartido_Publicar.html">Publicar Partido</a></li>
 	  </ul>  	  
-        <h1>SALUDOS!</h1>
       <!-- Example row of columns -->
-                   <form>
+      <form>
             <fieldset>
-              <legend>Infirnación</legend>
-              <label>Día</label>
-              <input type="date" name="fecha">
-              <label>Hora</label>
-              <input type="time" name="hora">
-              <label>Lugar</label>
+              
+      <div class="container-form">
+        <div class="row-bordeless">
+          <div class="span2">
+            <legend>Información</legend>
+          </div>
+        </div>
+
+        <div class="row-bordeless">
+          <div class="span1"><label>Día</label></div>
+          <div class="span2"><input type="date" name="fecha"></div>
+        </div>
+        <div class="row-bordeless">
+          <div class="span1"><label>Hora</label></div>
+          <div class="span2"><input type="time" name="hora"></div>
+        </div>
+        <div class="row-bordeless">
+          <div class="span1"><label>Lugar</label></div>
+          <div class="span2">
                 <select>
                   <option>7X7</option>
                   <option>5X5</option>
                   <option>Tenis</option>
                   <option>Ping-Pong</option>
                 </select>
-              <label>Deporte</label>
-              <input type="text" placeholder="">
-              <button type="submit" class="btn">Agregar</button>
+          </div>
+        </div>
+        <div class="row-bordeless">
+          <div class="span1"><label>Deporte</label></div>
+          <div class="span2"><input type="text" placeholder=""></div>
+        </div>
+        <div class="row-bordeless">
+          <div class="span1"></div>
+          <div class="span2"><button type="submit" class="btn">Agregar</button></div>
+        </div>
+      </div>  
+          
+              
             </fieldset>
           </form>
       
 	  <!-- end jumbotron -->
 
-
+      <br/>
          <table>
             <caption>Información</caption>
             <thead>

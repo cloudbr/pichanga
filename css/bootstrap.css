@@ -7109,3 +7109,27 @@ td.visible-print {
 .span3 { width: 220px; }
 .span4 { width: 420px; }
 .span12 { width: 770px; }
+
+.container-form{margin-right: -15px}
+.row-bordeless{margin-right: 200px;
+  margin-left: -15px;}
+
+.row-bordeless:before,
+.row-bordeless:after {
+  display: table;
+  content: " ";
+}
+
+.row-bordeless:after {
+  clear: both;
+}
+
+.row-bordeless:before,
+.row-bordeless:after {
+  display: table;
+  content: " ";
+}
+
+.row-bordeless:after {
+  clear: both;
+}
