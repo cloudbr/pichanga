@@ -54,23 +54,51 @@
       
 
        <!-- Jumbotron -->
-    <div class="jumbotron">		
-	<div class="thumbnail">	  
-	        
-      <!-- Example row of columns -->
-	  <div class="col-md-12">
-		 <div class="thumbnail">		  
-		  <img src="http://placehold.it/1200x400" />
-          <h2> TITULO TIPO H2 </h2>
-          <p> AGREGAR INFO </p>
-          <p><a class="btn btn-default" href="#" role="button">Ver detalles &raquo;</a></p>        
-         </div>    
-	  </div> 
-      <hr>      
-                 
-      </div> 
-      </div>
-      
+          <div id="tabs">
+    <ul>
+        <li>
+            <a href="#a">Mi horario</a>
+        </li>
+        <li>
+            <a href="#b">Mis amigos</a>
+        </li>
+        <li>
+            <a href="#c">Todos/a>
+        </li>
+    </ul>
+    <div id="a">
+        Lunes 20 , 9:00am , 5x5 , Basketball
+        Miercoles 23 , 13:00 , 7x7 , Futbol
+    </div>
+    <div id="b">
+        Miercoles 23 , 17:00 , 7x7 , Futbol , Francisco 
+    </div>
+    <div id="c">
+        Lunes 20 , 9:00am , 5x5 , Basketball
+        Miercoles 23 , 13:00 , 7x7 , Futbol
+        Miercoles 23 , 17:00 , 7x7 , Futbol , Francisco 
+    </div>
+</div>
+    
+
+     <h2>Busqueda</h2>
+<input type=“datetime” name=“fechahora”>
+  
+
+
+      <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+<script type="text/javascript">
+    $('#tabs')
+        .tabs()
+        .addClass('ui-tabs-vertical ui-helper-clearfix');
+
+
+
+
+
+
+  </script>
 	  <!-- end jumbotron -->
 
 
