@@ -70,28 +70,48 @@
 	  </ul>  	  
         <h1>SALUDOS!</h1>
       <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-lg-4">
-          <h2>Caso1</h2>
-          <p>info. </p>
-          <p><a class="btn btn-primary" href="#" role="button">Ver detalle »</a></p>
-        </div>
-        <div class="col-lg-4">
-          <h2>Caso2</h2>
-          <p>info. </p>
-          <p><a class="btn btn-primary" href="#" role="button">Ver detalle »</a></p>
-       </div>
-        <div class="col-lg-4">
-          <h2>Caso3</h2>
-          <p>info.</p>
-          <p><a class="btn btn-primary" href="#" role="button">Ver detalle »</a></p>
-        </div>
-      </div>        
-      </div> 
-      </div>
+                   <form>
+            <fieldset>
+              <legend>Infirnación</legend>
+              <label>Día</label>
+              <input type="date" name="fecha">
+              <label>Hora</label>
+              <input type="time" name="hora">
+              <label>Lugar</label>
+                <select>
+                  <option>7X7</option>
+                  <option>5X5</option>
+                  <option>Tenis</option>
+                  <option>Ping-Pong</option>
+                </select>
+              <label>Deporte</label>
+              <input type="text" placeholder="">
+              <button type="submit" class="btn">Agregar</button>
+            </fieldset>
+          </form>
       
 	  <!-- end jumbotron -->
 
+
+         <table>
+            <caption>Información</caption>
+            <thead>
+              <tr>
+                      <th>Día</th>
+                      <th>Hora</th>
+                      <th>Lugar c</th>
+                      <th>Deporte</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                      <th>Lunes</th>
+                      <td>8:00 Am</td>
+                      <td>Cancha 7x7</td>
+                      <td>Handball</td>
+              </tr>
+            </tbody>
+          </table>
 
       <!-- Site footer -->
       <div class="footer">
