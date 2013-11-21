@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="http://getbootstrap.com/docs-assets/ico/favicon.png">
+
+    <title>PichangaChanga</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/justified-nav.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    
+    <script type="text/javascript">
+		
+			function menu(){
+				window.location="Menu.html";
+			}
+		
+			function pushData(){
+				var data_user = document.getElementById("username").value;				
+				var data_pass = document.getElementById("password").value;
+				if((data_user=="user")&&(data_pass=="pass")){
+					    alert('¡Logeado!')
+						window.location="Perfil.html";
+					}else{
+						alert('¡User y/o Pass desconocida!')
+					}							
+			}
+																
+			
+	</script>
+    
+  </head>
+
+  <body>
+
+    <div class="container">
+		<form class="navbar-form navbar-right">
+			<div class="form-group">
+				<!--<input type="text" placeholder="Email" class="form-control">-->
+			</div>
+			<div class="form-group">
+				<!--<input type="password" placeholder="Password" class="form-control">-->
+            </div>
+			<button type="button" onclick="menu()" class="btn btn-success">Salir</button>
+			
+			<script type="text/javascript">
+
+			}
+			</script>
+		</form> 		
+		<div class="masthead">
+        <h3 class="text-muted">Pichangas</h3>
+        <ul class="nav nav-justified">
+          
+
+          <li class="active"><a href="Perfil.html">Ver Perfil</a></li>
+          <li><a href="ConfPartido.html">Configurar Partido</a></li>
+          <li><a href="BuscarPartido.html">Buscar Partido</a></li>
+          <li><a href="Mensajes.html">Mensaje</a></li>         
+            
+        </ul>  
+      </div>
+
+      <!-- Jumbotron -->
+      <div class="jumbotron">
+	  <div class="thumbnail">
+	  
+	  <!--i segundo menu --> 
+	  <!--i configurar para cada nav activo en cada caso --> 
+	  <ul class="nav nav-tabs">
+		<li class="active"><a href="#">Datos</a></li>
+		<li><a href="#">Horarios</a></li>
+		<li><a href="#">Notificaciones</a></li>
+	  </ul>
+        <h1>SALUDOS!</h1>
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-lg-4">
+          <h2>Caso1</h2>
+          <p>info. </p>
+          <p><a class="btn btn-primary" href="#" role="button">Ver detalle »</a></p>
+        </div>
+        <div class="col-lg-4">
+          <h2>Caso2</h2>
+          <p>info. </p>
+          <p><a class="btn btn-primary" href="#" role="button">Ver detalle »</a></p>
+       </div>
+        <div class="col-lg-4">
+          <h2>Caso3</h2>
+          <p>info.</p>
+          <p><a class="btn btn-primary" href="#" role="button">Ver detalle »</a></p>
+        </div>
+      </div>	                 
+      </div> 
+      </div>
+      
+	  <!-- end jumbotron -->
+
+
+      <!-- Site footer -->
+      <div class="footer">
+        <p>© Pichangachanga 2013</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-2.0.3.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/holder.js"></script>    
+  
+
+</body></html>

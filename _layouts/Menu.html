@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="http://getbootstrap.com/docs-assets/ico/favicon.png">
+
+    <title>PichangaChanga</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/justified-nav.css" rel="stylesheet">
+    <link href="css/carousel.css" rel="stylesheet">
+	<style type="text/css" id="holderjs-style"></style></head>
+	
+	<script type="text/javascript">
+		
+			function login(){
+				window.location="Login.html";
+			}
+			
+			function UltMod(){
+				var datos = 'Ultima modificacion: '+window.document.lastModified
+				alert(datos)				
+			}							
+			
+	</script>
+    
+  </head>
+
+  <body>	  
+
+    <div class="container">
+		<form class="navbar-form navbar-right">
+			<div class="form-group">
+				<!--<input type="text" placeholder="Email" class="form-control">-->
+			</div>
+			<div class="form-group">
+				<!--<input type="password" placeholder="Password" class="form-control">-->
+            </div>
+			<button type="button" onclick="login()" class="btn btn-success">Sign in</button>		
+			
+		</form> 		
+		<div class="masthead">
+        <h3 class="text-muted">Pichangas</h3>
+        <ul class="nav nav-justified">
+          <li class="active"><a href="Menu.html">Inicio</a></li>
+  
+  <!--    PRIMER EJEMPLO    
+          <li><a href="#" onclick="JavaScript:alert('¡Primero Logeate!')" >Ver Perfil</a></li>
+          <li><a href="#" onclick="JavaScript:alert('¡Primero Logeate!')" >Configurar Partido</a></li>
+          <li><a href="#" onclick="JavaScript:alert('¡Primero Logeate!')" >Buscar Partido</a></li>
+          <li><a href="#" onclick="JavaScript:alert('¡Primero Logeate!')" >Mensaje</a></li>
+            -->
+  <!--    SEGUNDO EJEMPLO    -->
+          <li><a href="#" onclick="JavaScript:alert('¡En construccion!')" >Colabora</a></li>
+          <li><a href="#" onclick="JavaScript:alert('¡En construccion!')" >Contacto</a></li>
+          <li><a href="#" onclick="UltMod()" >UltimaModificacion</a></li>
+       
+                        
+            
+            
+        </ul>  
+      </div>                
+      
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+        <li class="active" data-target="#myCarousel" data-slide-to="1"></li>
+        <li class="" data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="img/Seleccion.jpg" alt="First slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>un h1 para info.</h1>
+              <p>Buscar INFO EN <code>file://</code>.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="img/Seleccion2.png" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>un h1 para info.</h1>
+              <p>INFO.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="img/Seleccion3.jpg" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>un h1 para info.</h1>
+              <p>INFO.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div><!-- /.carousel -->
+
+
+
+
+
+
+       <!-- Jumbotron -->
+    <div class="jumbotron">		
+	<div class="thumbnail">	  
+	        
+      <!-- Example row of columns -->
+    <div class="row">		 
+        <div class="col-lg-4">
+          <h2>Caso1</h2>
+          <p>info. </p>
+          <p><a class="btn btn-primary" href="#" role="button">Ver detalle »</a></p>
+        </div>
+        <div class="col-lg-4">
+          <h2>Caso2</h2>
+          <p>info. </p>
+          <p><a class="btn btn-primary" href="#" role="button">Ver detalle »</a></p>
+       </div>
+        <div class="col-lg-4">
+          <h2>Caso3</h2>
+          <p>info.</p>
+          <p><a class="btn btn-primary" href="#" role="button">Ver detalle »</a></p>
+        </div>
+      </div>        
+                 
+      </div> 
+      </div>
+      
+	  <!-- end jumbotron -->
+
+
+      <!-- Site footer -->
+      <div class="footer">
+        <p>© Pichangachanga 2013</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+	
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-2.0.3.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/holder.js"></script>    
+    
+   
+
+<script>
+    $(document).ready(function(){
+        $('.carousel').carousel()
+    });
+</script>
+  
+
+</body></html>

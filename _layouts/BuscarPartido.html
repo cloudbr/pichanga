@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="http://getbootstrap.com/docs-assets/ico/favicon.png">
+
+    <title>PichangaChanga</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/justified-nav.css" rel="stylesheet">
+    <link href="css/carousel.css" rel="stylesheet">
+	<style type="text/css" id="holderjs-style"></style></head>
+    
+  </head>
+
+  <body>
+
+    <div class="container">
+		<form class="navbar-form navbar-right">
+			<div class="form-group">
+				<!--<input type="text" placeholder="Email" class="form-control">-->
+			</div>
+			<div class="form-group">
+				<!--<input type="password" placeholder="Password" class="form-control">-->
+            </div>
+			<button type="button" onclick="menu()" class="btn btn-success">Salir</button>
+			
+			<script type="text/javascript">
+			function menu(){
+				window.location="Menu.html";
+			}
+			</script>			
+		</form> 		
+		<div class="masthead">
+        <h3 class="text-muted">Pichangas</h3>
+        <ul class="nav nav-justified">		         
+          <li><a href="Perfil.html">Ver Perfil</a></li>
+          <li><a href="ConfPartido.html">Configurar Partido</a></li>
+          <li class="active"><a href="BuscarPartido.html">Buscar Partido</a></li>		  
+          <li><a href="Mensajes.html">Mensaje</a></li>           
+            
+        </ul>  
+      </div>
+      
+     
+      
+      
+
+       <!-- Jumbotron -->
+    <div class="jumbotron">		
+	<div class="thumbnail">	  
+	        
+      <!-- Example row of columns -->
+	  <div class="col-md-12">
+		 <div class="thumbnail">		  
+		  <img src="http://placehold.it/1200x400" />
+          <h2> TITULO TIPO H2 </h2>
+          <p> AGREGAR INFO </p>
+          <p><a class="btn btn-default" href="#" role="button">Ver detalles &raquo;</a></p>        
+         </div>    
+	  </div> 
+      <hr>      
+                 
+      </div> 
+      </div>
+      
+	  <!-- end jumbotron -->
+
+
+      <!-- Site footer -->
+      <div class="footer">
+        <p>© Pichangachanga 2013</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+	
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-2.0.3.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/holder.js"></script>    
+    
+    
+
+<script>
+    $(document).ready(function(){
+        $('.carousel').carousel()
+    });
+</script>
+  
+
+</body></html>
