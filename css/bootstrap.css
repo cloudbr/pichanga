@@ -808,8 +808,9 @@ pre code {
 }
 
 .row {
-  margin-right: -15px;
+  margin-right: 200px;
   margin-left: -15px;
+  border: 1px solid black;
 }
 
 .row:before,
@@ -7096,3 +7097,15 @@ td.visible-print {
     display: none !important;
   }
 }
+
+[class*="span"] {  
+  float: left;  
+  min-height: 1px;  
+  margin-left: 20px;  
+}
+
+.span1 { width: 90px; }
+.span2 { width: 140px; }
+.span3 { width: 220px; }
+.span4 { width: 420px; }
+.span12 { width: 770px; }
