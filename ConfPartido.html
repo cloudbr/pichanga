@@ -57,83 +57,170 @@
         </ul>  
       </div>
 
-      <!-- Jumbotron -->
-      <div class="jumbotron">
-	  <div class="thumbnail">
-	  
-	  <!--i segundo menu --> 
-	  <!--i configurar para cada nav activo en cada caso --> 
-	  <ul class="nav nav-tabs">
-		<li class="active"><a href="#">Datos del partido</a></li>
-		<li><a href="ConfPartido_Agregar.html">Agregar Jugadores</a></li>
-		<li><a href="ConfPartido_Publicar.html">Publicar Partido</a></li>
-	  </ul>  	  
-      <!-- Example row of columns -->
-      <form>
-            <fieldset>
-              
-      <div class="container-form">
-        <div class="row-bordeless">
-          <div class="span2">
-            <legend>Información</legend>
-          </div>
-        </div>
+         
 
-        <div class="row-bordeless">
-          <div class="span1"><label>Día</label></div>
-          <div class="span2"><input type="date" name="fecha"></div>
-        </div>
-        <div class="row-bordeless">
-          <div class="span1"><label>Hora</label></div>
-          <div class="span2"><input type="time" name="hora"></div>
-        </div>
-        <div class="row-bordeless">
-          <div class="span1"><label>Lugar</label></div>
-          <div class="span2">
-                <select>
-                  <option>7X7</option>
-                  <option>5X5</option>
-                  <option>Tenis</option>
-                  <option>Ping-Pong</option>
-                </select>
-          </div>
-        </div>
-        <div class="row-bordeless">
-          <div class="span1"><label>Deporte</label></div>
-          <div class="span2"><input type="text" placeholder=""></div>
-        </div>
-        <div class="row-bordeless">
-          <div class="span1"></div>
-          <div class="span2"><button type="submit" class="btn">Agregar</button></div>
-        </div>
-      </div>  
-          
-              
-            </fieldset>
-          </form>
-      
-	  <!-- end jumbotron -->
+ <!--i segundo menu --> 
+    <!--i configurar para cada nav activo en cada caso --> 
+            <div id="wrapper">
+            <h2>Información</h2>
+            <link href="css/style.css" rel="stylesheet" type="text/css">
+            <div id="tabContainer">
+              <div id="tabs">
+                <ul>
+                  <li id="tabHeader_1">Datos del partido</li>
+                  <li id="tabHeader_2">Agregar Jugadores</li>
+                  <li id="tabHeader_3">Publicar Partido</li>
+                </ul>
+              </div>
+              <div id="tabscontent">
+                <div class="tabpage" id="tabpage_1">
+                  <h2>Información</h2>
+                
+                  Fecha: <input type=“datetime” name=“fechahora”><br>
+                  <br>
+                  Lugar: <input type="text" ><br>
+                  <br>
+                  Deporte: <input type="text" ><br>
+                  <br>
 
-      <br/>
-         <table>
-            <caption>Información</caption>
-            <thead>
-              <tr>
-                      <th>Día</th>
-                      <th>Hora</th>
-                      <th>Lugar c</th>
-                      <th>Deporte</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                      <th>Lunes</th>
-                      <td>8:00 Am</td>
-                      <td>Cancha 7x7</td>
-                      <td>Handball</td>
-              </tr>
-            </tbody>
-          </table>
+
+                  <h2>Participantes</h2>
+
+                    <table class="table">  
+                      <thead>  
+                        <tr>  
+                          <th>Nombre</th>  
+                          <th>Apellido</th>  
+                        </tr>  
+                      </thead>  
+                      <tbody>  
+                        <tr>  
+                          <td></td>  
+                          <td></td>  
+ 
+                        </tr>  
+                      </tbody>  
+                    </table>  
+
+
+  
+
+                </div>
+                <div class="tabpage" id="tabpage_2">
+                   <h2>Amigos</h2>
+                   <p>Nombre:
+                    <select>
+                      <option value="Juan">Volvo</option>
+                      <option value="Pedro">Saab</option>
+                      
+                    </select>
+  
+                    <button type="submit" class="btn">Agregar</button>
+
+                    </p> 
+
+                    <h2>Compañeros</h2>
+                    <p>Nombre: <input type=“search” name=“busqueda”> <button type="submit" class="btn">Buscar</button> </p>
+
+                     <h3>Resultados</h3>
+
+                      <table class="table">  
+                      <thead>  
+                        <tr>  
+                          <th>Nombre</th>  
+                          <th>Apellido</th>  
+                          <th>Agregar</th>  
+                        </tr>  
+                      </thead>  
+                      <tbody>  
+                        <tr>  
+                          <td>Juan</td>  
+                          <td>Gonzales </td>  
+                          <td> <button type="submit" class="btn">Agregar</button> </td>  
+                        </tr>  
+                      </tbody>  
+                    </table>  
+
+
+                    <h3>Agregados</h3>
+
+                           <table class="table">  
+                      <thead>  
+                        <tr>  
+                          <th>Nombre</th>  
+                          <th>Apellido</th>  
+                          <th>Editar</th>   
+                        </tr>  
+                      </thead>  
+                      <tbody>  
+                        <tr>  
+                          <td>Juan</td>  
+                          <td>Gonzales </td>  
+                          <td> <button type="submit" class="btn">Borrar</button> </td>    
+                        </tr>  
+                      </tbody> 
+                      </table>  
+              </div>
+
+
+              <div class="tabpage" id="tabpage_3">
+             
+
+                <h2>Resumen</h2>
+
+                 <table class="table">  
+                      <thead>  
+                        <tr>  
+                          <th>Fecha</th>  
+                          <th>Lugar</th>  
+                          <th>Deporte</th>  
+                        </tr>  
+                      </thead>  
+                      <tbody>  
+                        <tr>  
+                          <td></td>  
+                          <td></td>  
+                          <td></td>  
+                        </tr>  
+                      </tbody>  
+                    </table>  
+
+
+                    <h3>Jugadores</h3>
+
+                           <table class="table">  
+                      <thead>  
+                        <tr>  
+                          <th>Nombre</th>  
+                          <th>Apellido</th>    
+                        </tr>  
+                      </thead>  
+                      <tbody>  
+                        <tr>  
+                          <td>Juan</td>  
+                          <td>Gonzales </td>  
+                        </tr>  
+                      </tbody> 
+                      </table> 
+                      <br>
+                      <p><button type="button" class="btn btn-primary" disabled="disabled" >Facebook</button> <button type="button" class="btn btn-success">Agregar a sistema</button>
+                </div><p>
+                
+                
+            </div>
+          <script type="text/javascript">
+
+
+          <!-- Jumbotron -->
+          <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+          <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+          <script type="text/javascript">
+              $('#tabs')
+                  .tabs()
+                  .addClass('ui-tabs-vertical ui-helper-clearfix');
+            </script>
+              <!-- end jumbotron -->
+
 
       <!-- Site footer -->
       <div class="footer">
@@ -148,7 +235,8 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery-2.0.3.js"></script>
     <script src="js/bootstrap.js"></script>
-    <script src="js/holder.js"></script>    
+    <script src="js/holder.js"></script>  
+    <script src="js/tabs_old.js"></script>  
   
 
 </body></html>

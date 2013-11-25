@@ -38,11 +38,22 @@
             </div>
 			<button type="button" onclick="menu()" class="btn btn-success">Salir</button>
 			
+
 			<script type="text/javascript">
+
 			function menu(){
 				window.location="Menu.html";
 			}
 			</script>
+
+
+      <script type="text/javascript">
+  $(document).ready(function(){
+    $("#myModal").modal('show');
+  });
+</script>
+
+
 		</form> 		
 		<div class="masthead">
         <h3 class="text-muted">Pichangas</h3>
@@ -58,44 +69,104 @@
             
         </ul>  
       </div>
-
-      <!-- Jumbotron -->
-      <div class="jumbotron">
-	  <div class="thumbnail">
 	  
-	  <!--i segundo menu --> 
-	  <!--i configurar para cada nav activo en cada caso --> 
-	  <ul class="nav nav-tabs">
-		<li class="active"><a href="#">Nuevos</a></li>
-		<li><a href="#">Favoritos</a></li>
-		<li><a href="#">Papelera</a></li>
-	  </ul>
-        <h1>SALUDOS!</h1>
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-lg-4">
-          <h2>Caso1</h2>
-          <p>info. </p>
-          <p><a class="btn btn-primary" href="#" role="button">Ver detalle »</a></p>
-        </div>
-        <div class="col-lg-4">
-          <h2>Caso2</h2>
-          <p>info. </p>
-          <p><a class="btn btn-primary" href="#" role="button">Ver detalle »</a></p>
-       </div>
-        <div class="col-lg-4">
-          <h2>Caso3</h2>
-          <p>info.</p>
-          <p><a class="btn btn-primary" href="#" role="button">Ver detalle »</a></p>
-        </div>
-      </div>
-        
-        
-      </div> 
-      </div>
-      
-	  <!-- end jumbotron -->
+	 <!--i segundo menu --> 
+    <!--i configurar para cada nav activo en cada caso --> 
+            <div id="wrapper">
+            <h2>Información</h2>
+            <link href="css/style.css" rel="stylesheet" type="text/css">
+            <div id="tabContainer">
+              <div id="tabs">
+                <ul>
+                  <li id="tabHeader_1">Nuevos</li>
+                  <li id="tabHeader_2">Favoritos</li>
+                  <li id="tabHeader_3">Papelera</li>
+                </ul>
+              </div>
 
+
+
+              <div id="tabscontent">
+                <div class="tabpage" id="tabpage_1">
+                  <h2>Mensajes</h2>
+                  <!-- Modal -->
+                              <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+                              
+
+                             <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+     </div><!-- /.modal -->                      
+        
+                                                     
+
+              
+                <div class="tabpage" id="tabpage_2">
+                  <h2>Mensajes</h2>
+                   <table class="table">  
+                      <thead>  
+                        <tr>  
+                          <th>De:</th>  
+                          <th>Motivo:</th>    
+                        </tr>  
+                      </thead>  
+                      <tbody>  
+                        <tr>  
+                          <td>Juan</td>  
+                          <td></td>  
+                        </tr>  
+                      </tbody> 
+                      </table> 
+              </div>
+
+
+              <div class="tabpage" id="tabpage_3">
+                <h2>Mensajes</h2>
+                     <table class="table">  
+                      <thead>  
+                        <tr>  
+                          <th>De:</th>  
+                          <th>Motivo:</th>    
+                        </tr>  
+                      </thead>  
+                      <tbody>  
+                        <tr>  
+                          <td>Juan</td>  
+                          <td></td>  
+                        </tr>  
+                      </tbody> 
+                
+            </div>
+         
+    
+       
+      <!-- Jumbotron -->
+          <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+          <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+          <script type="text/javascript">
+              $('#tabs')
+                  .tabs()
+                  .addClass('ui-tabs-vertical ui-helper-clearfix');
+            </script>
+              <!-- end jumbotron -->
 
       <!-- Site footer -->
       <div class="footer">
@@ -110,7 +181,12 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery-2.0.3.js"></script>
     <script src="js/bootstrap.js"></script>
-    <script src="js/holder.js"></script>    
+    <script src="js/holder.js"></script>   
+    <script src="js/tabs_old.js"></script> 
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/modal.js"></script>
+   
+
   
 
 </body></html>
