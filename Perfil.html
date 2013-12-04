@@ -10,12 +10,16 @@
 
     <title>PichangaChanga</title>
 
+
+
+     <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/justified-nav.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="stylesheets/bootstrap-switch.css" />
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -84,35 +88,129 @@
         </ul>  
       </div>
 
-      <!-- Jumbotron -->
-      <div class="jumbotron">
-	  <div class="thumbnail">
-	  
-	  <!--i segundo menu --> 
-	  <!--i configurar para cada nav activo en cada caso --> 
-	  <ul class="nav nav-tabs">
-		<li class="active"><a href="#">Datos</a></li>
-		<li><a href="Perfil_Horarios.html">Horarios</a></li>
-		<li><a href="Perfil_Notificacion.html">Notificaciones</a></li>
-	  </ul>
-        <h1>SALUDOS!</h1>
-      <!-- Example row of columns -->
-        <fieldset disabled>
-        <legend>Datos:</legend>
-        Nombre:<input type="text" placeholder="Daniel" required />
-        </label></p>
-        Apellido:<input type="text" placeholder="Romero" required />
-        </label></p>
-        Email:<input type="email" placeholder="daniel.romero@alumnos.utfsm.cl.input-xxlarge" required />
-        </label></p>
-        </fieldset
-	  <!-- end jumbotron -->
+
+      <!--i segundo menu --> 
+    <!--i configurar para cada nav activo en cada caso --> 
+            <div id="wrapper">
+            <h2>Perfil</h2>
+            <link href="css/style.css" rel="stylesheet" type="text/css">
+            <div id="tabContainer">
+              <div id="tabs">
+                <ul>
+                  <li id="tabHeader_1">Datos</li>
+                  <li id="tabHeader_2">Horarios</li>
+                  <li id="tabHeader_3">Notificaciones</li>
+                </ul>
+              </div>
+              <div id="tabscontent">
+                <div class="tabpage" id="tabpage_1">
+                  <h2>Saludos</h2>
+                
+
+
+                   <!-- Example row of columns -->
+                    
+                    <legend>Datos:</legend>
+                    Nombre:<input type="text" placeholder="Daniel" required />
+                    <br>
+                    Apellido:<input type="text" placeholder="Romero" required />
+                    <br>
+                    Email: <input type="email" placeholder="daniel.romero@alumnos.utfsm.cl.input-xxlarge" required />
+                    <br>
+
+
+                </div>
+
+
+                <div class="tabpage" id="tabpage_2">
+                   <h2>Calendario</h2>
+                      
+
+                      Día:  <select class="selectpicker">
+                        <option>Lunes</option>
+                        <option>Martes</option>
+                        <option>Miercoles</option>
+                        <option>Jueves</option>
+                        <option>Viernes</option>
+                        <option>Sabado</option>
+                      </select>
+
+                      Hora:<input size="16" type="text" value="" readonly class="form_time"><td> <button type="submit" class="btn">Agregar</button> </td> 
+    
+                
+
+
+
+
+                     <h3>Horario Registradp</h3>
+
+                      <table class="table">  
+                      <thead>  
+                        <tr>  
+                          <th>Día</th>  
+                          <th>Hora</th>  
+                          <th>Opción</th>  
+                        </tr>  
+                      </thead>  
+                      <tbody>  
+                        <tr>  
+                          <td>Lunes</td>  
+                          <td>11:30 </td>  
+                          <td> <button type="submit" class="btn">Borrar</button> </td>  
+                        </tr>  
+                      </tbody>  
+                    </table>  
+
+
+
+    
+
+                    
+              </div>
+
+
+              <div class="tabpage" id="tabpage_3">
+             
+
+                <h2>Notificaciones</h2>
+               
+
+
+                    
+                     
+                </div>
+                
+                
+            </div>
+          <script type="text/javascript">
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- Jumbotron -->
+          <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+          <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+          <script type="text/javascript">
+              $('#tabs')
+                  .tabs()
+                  .addClass('ui-tabs-vertical ui-helper-clearfix');
+            </script>
+              <!-- end jumbotron -->
 
 
       <!-- Site footer -->
@@ -120,17 +218,55 @@
         <p>© Pichangachanga 2013</p>
       </div>
 
-
-
     </div> <!-- /container -->
 
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery-2.0.3.js"></script>
+     <script src="js/jquery-2.0.3.js"></script>
     <script src="js/bootstrap.js"></script>
-    <script src="js/holder.js"></script>    
-  
+    <script src="js/holder.js"></script>  
+    <script src="js/tabs_old.js"></script>   
+    <script type="text/javascript" src="../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    
+
+<script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+<script type="text/javascript">
+
+
+
+  $(".form_datetime").datetimepicker({
+  minView: 2,
+  format: 'dd-MM-yyyy'
+});
+
+  $('.form_date').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 2,
+    minView: 2,
+    forceParse: 0
+    });
+
+
+
+  $('.form_time').datetimepicker({
+        
+        
+        minView: 0, 
+        pickTime: true, 
+        pickDate: false,
+        maxView: false,
+    autoclose: 1,
+    startView: 1,
+    format: 'h:ii'
+    
+
+    });
+</script>
 
 </body></html>
