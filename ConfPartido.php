@@ -179,9 +179,9 @@ if(empty($_SESSION["id"])){
 
                     <h2>Compañeros</h2>
 
-                    <form  action="buscarAmigo.php" autocomplete="on" method="post"> 
+                    
                     <p>Nombre: <input type=“search” name=“busqueda”> <button id="amigo" type="submit" class="btn">Buscar</button> </p>
-                     </form>
+                    
 
 
                      <h3>Resultados</h3>
@@ -195,15 +195,8 @@ if(empty($_SESSION["id"])){
                         </tr>  
                       </thead>  
 
-
                       <tr>  
-                        <?php
-                          echo '<tr>
-                                            <td>'.$_SESSION["amigo1"].'</td>
-                                            <td>'.$_SESSION["amigo1"].'</td>
-                                            <td><button type="submit" class="btn">Borrar</button></td>
-                                            <tr>'; 
-                         ?>
+                      
                       <tbody>  
                         
 
@@ -225,8 +218,8 @@ if(empty($_SESSION["id"])){
                       </thead>  
                       <tbody>  
                         <tr>  
-                          <td>Juan</td>  
-                          <td>Gonzales </td>  
+                          <td>Felipe</td>  
+                          <td>Navarro </td>  
                           <td> <button type="submit" class="btn">Borrar</button> </td>    
                         </tr>  
                       </tbody> 
