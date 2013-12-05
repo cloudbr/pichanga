@@ -4,7 +4,7 @@ session_start();
 $mail = $_POST["correo"];
 $pass = $_POST["password"];
 
-$link =mysql_connect("localhost", "root", "");
+$link =mysql_connect("localhost", "root", "asd");
 
 if (!$link) {
     trigger_error('Error al conectar al servidor mysql: ' . mysql_error(),E_USER_ERROR);

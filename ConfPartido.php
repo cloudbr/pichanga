@@ -76,37 +76,87 @@ if(empty($_SESSION["id"])){
               <div id="tabs">
                 <ul>
                   <li id="tabHeader_1">Datos del partido</li>
-                  <li id="tabHeader_2">Agregar Jugadores</li>
-                  <li id="tabHeader_3">Publicar Partido</li>
+                  <li id="tabHeader_2">Amigos</li>
+                  <li id="tabHeader_3">Publicar Facebook</li>
                 </ul>
               </div>
               <div id="tabscontent">
                 <div class="tabpage" id="tabpage_1">
                   <h2>Información</h2>
-                
-                  Fecha: <input type=“datetime” name=“fechahora”><br>
+                  
+
+                  <form  action="insertarPartido.php" autocomplete="on" method="post"> 
+                  Fecha: <input type=“datetime” placeholder="Día/Mes/Año" id="fecha" name=“fechahora”><br>
                   <br>
-                  Lugar: <input type="text" ><br>
+                  Hora: <input type="text" id="hora" ><br>
                   <br>
-                  Deporte: <input type="text" ><br>
+                  Lugar: <input type="text" id="lugar" ><br>
                   <br>
+                  Direccion: <input type="text" id="direc" ><br>
+                  <br>
+                  Deporte: <input type="text" id="deporte" ><br>
+                  <br>
+                  Descripción: <input type="text" id="desc" ><br>
+                  <br>
+                  <p> 
+
+                  <td> <button type="submit" class="btn btn-success">Agregar</button> </td>  
+                  </p>
+
+                   </form>
 
 
-                  <h2>Participantes</h2>
+
+
+
+
+                  <h2>Resumen</h2>
 
                     <table class="table">  
                       <thead>  
                         <tr>  
-                          <th>Nombre</th>  
-                          <th>Apellido</th>  
+                          <th>Fecha</th>  
+                          <th>Hora</th>
+                          <th>Lugar</th>  
+                          <th>Deporte</th>
+                          <th>Deporte</th>
                         </tr>  
                       </thead>  
                       <tbody>  
-                        <tr>  
-                          <td></td>  
-                          <td></td>  
- 
-                        </tr>  
+                     
+                         <?php
+                            $link =mysql_connect("localhost", "root", "");
+
+                            if (!$link) {
+                                trigger_error('Error al conectar al servidor mysql: ' . mysql_error(),E_USER_ERROR);
+                            }
+
+                            $db_selected = mysql_select_db("pichangachanga",$link) OR DIE ("Error: No es posible establecer la conexión");
+                            if (!$db_selected) {
+                                trigger_error ('Error al conectar a la base de datos: ' . mysql_error(),E_USER_ERROR);
+                            }
+
+
+                            $id = $_SESSION["id"];
+                            
+                            $qry = mysql_query("SELECT * FROM partido WHERE id_usuario=".$id."") or die("Error en: $busqueda: " . mysql_error());
+                            
+                            if (!$qry)
+                              echo '<tr><td>No hay datos</td></tr>';
+                            else{
+                                while ($filas = mysql_fetch_assoc($qry)) {
+                                      echo '<tr>
+                                            <td>'.$filas["fecha"].'</td>
+                                            <td>'.$filas["hora_inicio"].'</td>
+                                            <td>'.$filas["lugar"].'</td>
+                                            <td>'.$filas["deporte"].'</td>
+                                            <td><button type="submit" class="btn">Borrar</button></td>
+                                            <tr>';
+                                }
+
+                            }
+                        ?>  
+
                       </tbody>  
                     </table>  
 
@@ -118,7 +168,7 @@ if(empty($_SESSION["id"])){
                    <h2>Amigos</h2>
                    <p>Nombre:
                     <select>
-                      <option value="Juan">Volvo</option>
+                      <option value="Juan">Juan</option>
                       <option value="Pedro">Saab</option>
                       
                     </select>
@@ -128,7 +178,11 @@ if(empty($_SESSION["id"])){
                     </p> 
 
                     <h2>Compañeros</h2>
-                    <p>Nombre: <input type=“search” name=“busqueda”> <button type="submit" class="btn">Buscar</button> </p>
+
+                    <form  action="buscarAmigo.php" autocomplete="on" method="post"> 
+                    <p>Nombre: <input type=“search” name=“busqueda”> <button id="amigo" type="submit" class="btn">Buscar</button> </p>
+                     </form>
+
 
                      <h3>Resultados</h3>
 
@@ -140,12 +194,21 @@ if(empty($_SESSION["id"])){
                           <th>Agregar</th>  
                         </tr>  
                       </thead>  
+
+
+                      <tr>  
+                        <?php
+                          echo '<tr>
+                                            <td>'.$_SESSION["amigo1"].'</td>
+                                            <td>'.$_SESSION["amigo1"].'</td>
+                                            <td><button type="submit" class="btn">Borrar</button></td>
+                                            <tr>'; 
+                         ?>
                       <tbody>  
-                        <tr>  
-                          <td>Juan</td>  
-                          <td>Gonzales </td>  
-                          <td> <button type="submit" class="btn">Agregar</button> </td>  
-                        </tr>  
+                        
+
+                      
+                        
                       </tbody>  
                     </table>  
 
@@ -205,13 +268,13 @@ if(empty($_SESSION["id"])){
                       </thead>  
                       <tbody>  
                         <tr>  
-                          <td>Juan</td>  
-                          <td>Gonzales </td>  
+                          <td></td>  
+                          <td></td>  
                         </tr>  
                       </tbody> 
                       </table> 
                       <br>
-                      <p><button type="button" class="btn btn-primary" disabled="disabled" >Facebook</button> <button type="button" class="btn btn-success">Agregar a sistema</button>
+                      <p><button type="button" class="btn btn-primary" disabled="disabled" >Facebook</button> 
                 </div><p>
                 
                 
