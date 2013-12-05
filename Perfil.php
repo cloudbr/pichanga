@@ -1,6 +1,10 @@
 ﻿<?php
-@session_start();
-
+session_start();
+if(empty($_SESSION["id"])){
+  $_SESSION = array();
+  session_destroy();
+  header("Location: Index.html");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en"><head>
@@ -79,10 +83,10 @@
         <ul class="nav nav-justified">
           
 
-          <li class="active"><a href="Perfil.html">Ver Perfil</a></li>
-          <li><a href="ConfPartido.html">Configurar Partido</a></li>
-          <li><a href="BuscarPartido.html">Buscar Partido</a></li>
-          <li><a href="Mensajes.html">Mensaje</a></li>         
+          <li class="active"><a href="Perfil.php">Ver Perfil</a></li>
+          <li><a href="ConfPartido.php">Configurar Partido</a></li>
+          <li><a href="BuscarPartido.php">Buscar Partido</a></li>
+          <li><a href="Mensajes.php">Mensaje</a></li>         
             
         </ul>  
       </div>
@@ -110,7 +114,10 @@
                    <!-- Example row of columns -->
                     
                     <legend>Datos:</legend>
-                    Nombre:<input type="text" placeholder="Daniel" required />
+                    <?php
+                      echo 'Nombre:<input type="text" placeholder="'.$_SESSION["nombre"].'" required />'
+                    ?>
+                    
                     <br>
                     Apellido:<input type="text" placeholder="Romero" required />
                     <br>

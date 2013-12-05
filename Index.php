@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!empty($_SESSION["id"])){
+  $_SESSION = array();
+  session_destroy();
+}
+?>
 <!DOCTYPE html>
 <html lang="en" class="no-js"> <!--<![endif]-->
     <head>

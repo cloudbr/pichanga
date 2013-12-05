@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(empty($_SESSION["id"])){
+  $_SESSION = array();
+  session_destroy();
+  header("Location: Index.html");
+}
+?>
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -36,7 +44,7 @@
 			<div class="form-group">
 				<!--<input type="password" placeholder="Password" class="form-control">-->
             </div>
-			<button type="button" onclick="menu()" class="btn btn-success">Salir</button>
+			<a href="logout.php" title="Cerrar sesión">Cerrar Sesión</a>
 			
 
 			<script type="text/javascript">
@@ -60,10 +68,10 @@
         <ul class="nav nav-justified">
           
          
-          <li><a href="Perfil.html">Ver Perfil</a></li>
-          <li><a href="ConfPartido.html">Configurar Partido</a></li>          
-          <li><a href="BuscarPartido.html">Buscar Partido</a></li>
-          <li class="active"><a href="Mensajes.html">Mensaje</a></li>
+          <li><a href="Perfil.php">Ver Perfil</a></li>
+          <li><a href="ConfPartido.php">Configurar Partido</a></li>          
+          <li><a href="BuscarPartido.php">Buscar Partido</a></li>
+          <li class="active"><a href="Mensajes.php">Mensaje</a></li>
         
           
             
