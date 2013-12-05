@@ -101,12 +101,12 @@ if(empty($_SESSION["id"])){
                     
                     <legend>Datos:</legend>
                     <?php
-                      echo 'Nombre:<input type="text" placeholder="'.$_SESSION["nombre"].'" required />'
+                      echo 'Nombre:<input type="text" value="'.$_SESSION["nombre"].'" disabled />'
                     ?>
                     
                     <br>
                     <?php
-                      echo 'Email: <input type="email" placeholder="'.$_SESSION["correo"].'".input-xxlarge" required />'
+                      echo 'Email: <input type="email" value="'.$_SESSION["correo"].'".input-xxlarge" disabled />'
                     ?>
                     <br>
 
@@ -140,7 +140,7 @@ if(empty($_SESSION["id"])){
 
                             $id = $_SESSION["id"];
                             
-                            $qry = mysql_query("SELECT * FROM bloque_libre WHERE id_usuario=".$id."") or die("Error en: $busqueda: " . mysql_error());
+                            $qry = mysql_query("SELECT * FROM bloque_libre WHERE id_usuario=".$id." ORDER BY dia") or die("Error en: $busqueda: " . mysql_error());
                             
                             if (!$qry)
                               echo '<tr><td>No hay datos</td></tr>';
@@ -149,8 +149,11 @@ if(empty($_SESSION["id"])){
                                       echo '<tr>
                                             <td>'.$fila["dia"].'</td>
                                             <td>'.$fila["inicio"].' - '.$fila["fin"].'</td>
-                                            <td><button type="submit" class="btn">Borrar</button></td>
-                                            <tr>';
+                                            <td>
+                                            <a href="borrar_horario.php?id='.$fila["id"].'"><font color="black">Borrar</font></a>                                                 
+                                            </td>
+                                            </tr>
+                                            ';
                                 }
 
                             }
@@ -173,17 +176,14 @@ if(empty($_SESSION["id"])){
                                       <option>Sabado</option>
                                     </select>
                                     
-                                </p>
-                                <p> 
+                                 
                                     <label for="password" class="youpasswd" > Hora-Inicio </label>
-                                    <input id="hora_inicio" name="hora_inicio" size="16" type="text" readonly class="form_time"/>
-                                </p>
-                                <p> 
+                                    <input id="hora_inicio" name="hora_inicio" size="16" type="text" readonly class="form_time" required="required"/>
+                                 
                                     <label for="password" class="youpasswd" > Hora-Fin </label>
-                                     <input id="hora_fin" name="hora_fin" size="16" type="text" readonly class="form_time"/>
-                                </p>                               
-                                <p> 
-                                    <button type="submit" value="Agregar">Agregar</button> 
+                                     <input id="hora_fin" name="hora_fin" size="16" type="text" readonly class="form_time" required="required"/>
+                               
+                                    <button type="submit" class="btn" value="Agregar">Agregar</button> 
                                 </p>
                             
                             </form>  
