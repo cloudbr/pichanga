@@ -116,20 +116,48 @@ if(empty($_SESSION["id"])){
 
                 <div class="tabpage" id="tabpage_2">
                    <h2>Mis Bloques Disponibles</h2>
-                      <table class="table">  
+                      <table class="table">
                       <thead>  
                         <tr>  
                           <th>Día</th>  
                           <th>Hora</th>  
                           <th>Opción</th>  
                         </tr>  
-                      </thead>  
-                      <tbody>  
-                        <tr>  
-                          <td>Lunes</td>  
-                          <td>11:30 </td>  
-                          <td> <button type="submit" class="btn">Borrar</button> </td>  
-                        </tr>  
+                      </thead>
+                      <tbody>
+                      <?php
+                            $link =mysql_connect("localhost", "root", "");
+
+                            if (!$link) {
+                                trigger_error('Error al conectar al servidor mysql: ' . mysql_error(),E_USER_ERROR);
+                            }
+
+                            $db_selected = mysql_select_db("pichangachanga",$link) OR DIE ("Error: No es posible establecer la conexión");
+                            if (!$db_selected) {
+                                trigger_error ('Error al conectar a la base de datos: ' . mysql_error(),E_USER_ERROR);
+                            }
+
+
+                            $id = $_SESSION["id"];
+                            
+                            $qry = mysql_query("SELECT * FROM bloque_libre WHERE id_usuario=".$id."") or die("Error en: $busqueda: " . mysql_error());
+                            
+                            if (!$qry)
+                              echo '<tr><td>No hay datos</td></tr>';
+                            else{
+                                while ($fila = mysql_fetch_assoc($qry)) {
+                                      echo '<tr>
+                                            <td>'.$fila["dia"].'</td>
+                                            <td>'.$fila["inicio"].' - '.$fila["fin"].'</td>
+                                            <td><button type="submit" class="btn">Borrar</button></td>
+                                            <tr>';
+                                }
+
+                            }
+                            
+
+                      ?>  
+                         
                       </tbody>  
                     </table>
                     <h3>Nuevo Bloque Libre</h3>                    
@@ -155,7 +183,7 @@ if(empty($_SESSION["id"])){
                                      <input id="hora_fin" name="hora_fin" size="16" type="text" readonly class="form_time"/>
                                 </p>                               
                                 <p> 
-                                    <input type="submit" value="Agregar" /> 
+                                    <button type="submit" value="Agregar">Agregar</button> 
                                 </p>
                             
                             </form>  
@@ -176,22 +204,6 @@ if(empty($_SESSION["id"])){
                 
                 
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
