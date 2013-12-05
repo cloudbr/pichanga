@@ -20,12 +20,22 @@
 			function pushData(){
 				var data_user = document.getElementById("username").value;				
 				var data_pass = document.getElementById("password").value;
-				if((data_user=="user")&&(data_pass=="pass")){
+				if((data_user=="dromero@gmail.com")&&(data_pass=="dromero")){
 					    alert('¡Logeado!')
-						window.location="Perfil.html";
-					}else{
-						alert('¡User y/o Pass desconocida!')
-					}							
+						window.location="Perfil.php";
+					
+				}
+                else if((data_user=="fnavarro@gmail.com")&&(data_pass=="fnavarro")){
+                    alert('¡Logeado!')
+                    window.location="Perfil.php";
+                }
+                
+                else if((data_user=="tencina@gmail.com")&&(data_pass=="tencina")){
+                        alert('¡Logeado!')
+                        window.location="Perfil.php";
+                    }else{
+                        alert('¡User y/o Pass desconocida!')
+                }     							
 			}
 																
 			
@@ -39,7 +49,7 @@
 		
         <div class="container">
             <header>
-                <h1>Login Pichangachanga</h1>
+                <h1>Pichangachanga</h1>
 				<nav class="codrops-demos">
 				</nav>
             </header>
@@ -50,7 +60,7 @@
                     <div id="wrapper">
                         <div id="login" class="animate form">
                             <form  action="#" autocomplete="on" method="post"> 
-                                <h1>Login</h1> 
+                                <h1>Ingreso</h1> 
                                 <p> 
                                     <label for="username" class="uname" > Your email </label>
                                     <input id="username" name="username" required="required" type="text" placeholder="Mymail@mail.com"/>
@@ -67,16 +77,16 @@
                                 <p class="login button"> 
                                     <input type="button" value="Login"  onclick="pushData()"/> 
 								</p>
-                                <p class="change_link">
+                               <!-- <p class="change_link">
 									¿Olvidaste tu contraseña?
-									<a href="#toregister" class="to_register">Reg&iacute;strate</a>
-								</p>
+									<a href="#toregister" class="to_register" disable>Reg&iacute;strate</a>
+								</p>-->
                             </form>
                         </div>
 
                         <div id="register" class="animate form">
                             <form  action="Perfil.html" autocomplete="on" method="post"> 
-                                <h1> Login </h1> 
+                                <h1> Registro </h1> 
                                 <p> 
                                     <label for="usernamesignup" class="uname" >Your username</label>
                                     <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="myusername" />

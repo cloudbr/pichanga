@@ -123,27 +123,7 @@
 
 
                 <div class="tabpage" id="tabpage_2">
-                   <h2>Calendario</h2>
-                      
-
-                      Día:  <select class="selectpicker">
-                        <option>Lunes</option>
-                        <option>Martes</option>
-                        <option>Miercoles</option>
-                        <option>Jueves</option>
-                        <option>Viernes</option>
-                        <option>Sabado</option>
-                      </select>
-
-                      Hora:<input size="16" type="text" value="" readonly class="form_time"><td> <button type="submit" class="btn">Agregar</button> </td> 
-    
-                
-
-
-
-
-                     <h3>Horario Registradp</h3>
-
+                   <h2>Mis Bloques Disponibles</h2>
                       <table class="table">  
                       <thead>  
                         <tr>  
@@ -159,9 +139,19 @@
                           <td> <button type="submit" class="btn">Borrar</button> </td>  
                         </tr>  
                       </tbody>  
-                    </table>  
+                    </table>
+                    <h3>Nuevo Bloque Libre</h3>
+                      Día:  <select class="selectpicker">
+                        <option>Lunes</option>
+                        <option>Martes</option>
+                        <option>Miercoles</option>
+                        <option>Jueves</option>
+                        <option>Viernes</option>
+                        <option>Sabado</option>
+                      </select>
 
-
+                      Hora:<input size="16" type="text" value="" readonly class="form_time"><td> <button type="submit" class="btn">Agregar</button> </td> 
+    
 
     
 
@@ -257,13 +247,13 @@
   $('.form_time').datetimepicker({
         
         
-        minView: 0, 
+        minView: 1, 
         pickTime: true, 
         pickDate: false,
-        maxView: false,
+        maxView: 1,
     autoclose: 1,
     startView: 1,
-    format: 'h:ii'
+    format: 'h:00'
     
 
     });
