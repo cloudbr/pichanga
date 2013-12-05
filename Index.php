@@ -1,8 +1,7 @@
 <?php
 session_start();
 if(!empty($_SESSION["id"])){
-  $_SESSION = array();
-  session_destroy();
+  header("Location: Perfil.php");
 }
 ?>
 <!DOCTYPE html>
@@ -10,7 +9,7 @@ if(!empty($_SESSION["id"])){
     <head>
         <meta charset="UTF-8" />
         <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
-        <title>Login PichangaChanga</title>
+        <title>PichangaChanga</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <meta name="description" content="Login and Registration Form with HTML5 and CSS3" />
         <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
@@ -24,27 +23,7 @@ if(!empty($_SESSION["id"])){
 		
 		<script type="text/javascript">
 		
-			function pushData(){
-				var data_user = document.getElementById("username").value;				
-				var data_pass = document.getElementById("password").value;
-				if((data_user=="dromero@gmail.com")&&(data_pass=="dromero")){
-					    alert('¡Logeado!')
-						window.location="Perfil.php";
-					
-				}
-                else if((data_user=="fnavarro@gmail.com")&&(data_pass=="fnavarro")){
-                    alert('¡Logeado!')
-                    window.location="Perfil.php";
-                }
-                
-                else if((data_user=="tencina@gmail.com")&&(data_pass=="tencina")){
-                        alert('¡Logeado!')
-                        window.location="Perfil.php";
-                    }else{
-                        alert('¡User y/o Pass desconocida!')
-                }     							
-			}
-																
+																			
 			
 		</script>
 		
@@ -76,10 +55,10 @@ if(!empty($_SESSION["id"])){
                                     <label for="password" class="youpasswd" > Contraseña </label>
                                     <input id="password" name="password" required="required" type="password" placeholder="*******" /> 
                                 </p>
-                                <p class="keeplogin"> 
+                                <!--<p class="keeplogin"> 
 									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
 									<label for="loginkeeping">Recordar mis datos</label>
-								</p>
+								</p>-->
                                 <p class="login button"> 
                                     <input type="submit" value="Login" /> 
 								</p>

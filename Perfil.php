@@ -39,21 +39,7 @@ if(empty($_SESSION["id"])){
     
     <script type="text/javascript">
 		
-			function menu(){
-				window.location="Menu.html";
-			}
-		
-			function pushData(){
-				var data_user = document.getElementById("username").value;				
-				var data_pass = document.getElementById("password").value;
-				if((data_user=="user")&&(data_pass=="pass")){
-					    alert('¡Logeado!')
-						window.location="Perfil.html";
-					}else{
-						alert('¡User y/o Pass desconocida!')
-					}							
-			}
-																
+													
 			
 	</script>
     
@@ -119,9 +105,9 @@ if(empty($_SESSION["id"])){
                     ?>
                     
                     <br>
-                    Apellido:<input type="text" placeholder="Romero" required />
-                    <br>
-                    Email: <input type="email" placeholder="daniel.romero@alumnos.utfsm.cl.input-xxlarge" required />
+                    <?php
+                      echo 'Email: <input type="email" placeholder="'.$_SESSION["correo"].'".input-xxlarge" required />'
+                    ?>
                     <br>
 
 
@@ -146,21 +132,33 @@ if(empty($_SESSION["id"])){
                         </tr>  
                       </tbody>  
                     </table>
-                    <h3>Nuevo Bloque Libre</h3>
-                      Día:  <select class="selectpicker">
-                        <option>Lunes</option>
-                        <option>Martes</option>
-                        <option>Miercoles</option>
-                        <option>Jueves</option>
-                        <option>Viernes</option>
-                        <option>Sabado</option>
-                      </select>
-
-                      Hora:<input size="16" type="text" value="" readonly class="form_time"><td> <button type="submit" class="btn">Agregar</button> </td> 
-    
-
-    
-
+                    <h3>Nuevo Bloque Libre</h3>                    
+                            <form  action="horarios.php" autocomplete="on" method="post"> 
+                                <p> 
+                                    <label> Día </label>
+                                    <select class="selectpicker" name="dia">
+                                      <option>Lunes</option>
+                                      <option>Martes</option>
+                                      <option>Miercoles</option>
+                                      <option>Jueves</option>
+                                      <option>Viernes</option>
+                                      <option>Sabado</option>
+                                    </select>
+                                    
+                                </p>
+                                <p> 
+                                    <label for="password" class="youpasswd" > Hora-Inicio </label>
+                                    <input id="hora_inicio" name="hora_inicio" size="16" type="text" readonly class="form_time"/>
+                                </p>
+                                <p> 
+                                    <label for="password" class="youpasswd" > Hora-Fin </label>
+                                     <input id="hora_fin" name="hora_fin" size="16" type="text" readonly class="form_time"/>
+                                </p>                               
+                                <p> 
+                                    <input type="submit" value="Agregar" /> 
+                                </p>
+                            
+                            </form>  
                     
               </div>
 
@@ -171,14 +169,13 @@ if(empty($_SESSION["id"])){
                 <h2>Notificaciones</h2>
                
 
-
+                    Próximamente...
                     
                      
                 </div>
                 
                 
             </div>
-          <script type="text/javascript">
 
 
 
