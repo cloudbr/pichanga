@@ -36,52 +36,62 @@ if(empty($_SESSION["id"])){
 
   <body>
 
-    <div class="container">
-		<form class="navbar-form navbar-right">
-			<div class="form-group">
-				<!--<input type="text" placeholder="Email" class="form-control">-->
-			</div>
-			<div class="form-group">
-				<!--<input type="password" placeholder="Password" class="form-control">-->
-            </div>
-			<a href="logout.php" title="Cerrar sesión">Cerrar Sesión</a>
-			
+    <!-- MENU FIJADO EN TOP -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <!-- El logotipo y el icono que despliega el menú se agrupan
+       para mostrarlos mejor en los dispositivos móviles -->
 
-			<script type="text/javascript">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse"
+            data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Desplegar navegación</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="">PichangaChanga</a>
+  </div>
+  
+  <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+       otro elemento que se pueda ocultar al minimizar la barra -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <li><a href="Inicio.php">INICIO</a></li>
+      <!--li><a href="#">PERFIL</a></li-->
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          PARTIDOS <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="ConfPartido.php">Mis Partidos</a></li>
+          <li><a href="BuscarPartido.php">Buscar</a></li>          
+        </ul>
+      </li>
+      <li class="active"><a href="Mensajes.php">MENSAJES</a></li>  
+    </ul>
+ 
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <?php echo $_SESSION["nombre"]; ?> <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="Perfil.php">Perfil</a></li>
+          <li><a href="#">Amigos</a></li>
+          <li class="divider"></li>
+          <li><a href="logout.php">Cerrar Sesión</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  
+</nav>
 
-			function menu(){
-				window.location="Menu.html";
-			}
-			</script>
-
-
-      <script type="text/javascript">
-  $(document).ready(function(){
-    $("#myModal").modal('show');
-  });
-</script>
-
-
-		</form> 		
-		<div class="masthead">
-        <h3 class="text-muted">Pichangas</h3>
-        <ul class="nav nav-justified">
-          
-         
-          <li><a href="Perfil.php">Ver Perfil</a></li>
-          <li><a href="ConfPartido.php">Configurar Partido</a></li>          
-          <li><a href="BuscarPartido.php">Buscar Partido</a></li>
-          <li class="active"><a href="Mensajes.php">Mensaje</a></li>
-        
-          
-            
-        </ul>  
-      </div>
+<!-- END MENU -->
 	  
 	 <!--i segundo menu --> 
     <!--i configurar para cada nav activo en cada caso --> 
-            <div id="wrapper">
-            <h2>Información</h2>
+        <div id="wrapper">
             <link href="css/style.css" rel="stylesheet" type="text/css">
             <div id="tabContainer">
               <div id="tabs">
@@ -98,31 +108,12 @@ if(empty($_SESSION["id"])){
                 <div class="tabpage" id="tabpage_1">
                   <h2>Mensajes</h2>
                   <!-- Modal -->
-                              <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
+                  <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Launch demo modal</button>
 
                               
 
-                             <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-     </div><!-- /.modal -->                      
+                 
+                </div><!-- /.modal -->                      
         
                                                      
 
@@ -161,9 +152,10 @@ if(empty($_SESSION["id"])){
                           <td></td>  
                         </tr>  
                       </tbody> 
+                    </table>
                 
             </div>
-         
+         </div>
     
        
       <!-- Jumbotron -->
@@ -177,6 +169,7 @@ if(empty($_SESSION["id"])){
               <!-- end jumbotron -->
 
       <!-- Site footer -->
+    </div>
       <div class="footer">
         <p>© Pichangachanga 2013</p>
       </div>
@@ -197,4 +190,5 @@ if(empty($_SESSION["id"])){
 
   
 
-</body></html>
+</body>
+</html>

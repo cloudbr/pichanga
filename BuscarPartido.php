@@ -31,38 +31,63 @@ if(empty($_SESSION["id"])){
 
   <body>
 
-    <div class="container">
-		<form class="navbar-form navbar-right">
-			<div class="form-group">
-				<!--<input type="text" placeholder="Email" class="form-control">-->
-			</div>
-			<div class="form-group">
-				<!--<input type="password" placeholder="Password" class="form-control">-->
-            </div>
-			<a href="logout.php" title="Cerrar sesión">Cerrar Sesión</a>
-			
-			<script type="text/javascript">
-			function menu(){
-				window.location="Menu.html";
-			}
-			</script>			
-		</form> 		
-		<div class="masthead">
-        <h3 class="text-muted">Pichangas</h3>
-        <ul class="nav nav-justified">		         
-          <li><a href="Perfil.php">Ver Perfil</a></li>
-          <li><a href="ConfPartido.php">Configurar Partido</a></li>
-          <li class="active"><a href="BuscarPartido.php">Buscar Partido</a></li>		  
-          <li><a href="Mensajes.php">Mensaje</a></li>           
-            
-        </ul>  
-      </div>
+    <!-- MENU FIJADO EN TOP -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <!-- El logotipo y el icono que despliega el menú se agrupan
+       para mostrarlos mejor en los dispositivos móviles -->
+
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse"
+            data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Desplegar navegación</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="">PichangaChanga</a>
+  </div>
+  
+  <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+       otro elemento que se pueda ocultar al minimizar la barra -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <li><a href="Inicio.php">INICIO</a></li>
+      <!--li><a href="#">PERFIL</a></li-->
+      <li class="dropdown active">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          BUSCAR PARTIDO <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="ConfPartido.php">Mis Partidos</a></li>
+          <li class="disabled"><a href="BuscarPartido.php">Buscar</a></li>          
+        </ul>
+      </li>
+      <li><a href="Mensajes.php">MENSAJES</a></li>  
+    </ul>
+ 
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <?php echo $_SESSION["nombre"]; ?> <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="Perfil.php">Perfil</a></li>
+          <li><a href="#">Amigos</a></li>
+          <li class="divider"></li>
+          <li><a href="logout.php">Cerrar Sesión</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  
+</nav>
+
+<!-- END MENU -->
       
      
     <!--i segundo menu --> 
     <!--i configurar para cada nav activo en cada caso --> 
             <div id="wrapper">
-            <h2>Buscar</h2>
             <link href="css/style.css" rel="stylesheet" type="text/css">
             <div id="tabContainer">
               <div id="tabs">
