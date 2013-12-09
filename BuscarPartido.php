@@ -3,7 +3,7 @@ session_start();
 if(empty($_SESSION["id"])){
   $_SESSION = array();
   session_destroy();
-  header("Location: Index.html");
+  header("Location: Index.php");
 }
 ?>
 <!DOCTYPE html>

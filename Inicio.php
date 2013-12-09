@@ -3,7 +3,7 @@ session_start();
 if(empty($_SESSION["id"])){
   $_SESSION = array();
   session_destroy();
-  header("Location: Index.html");
+  header("Location: Index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -82,15 +82,14 @@ if(empty($_SESSION["id"])){
 <!-- END MENU -->
 
 
-<!--CONTENIDO -->
-
-<div id="wrapper">
-  <link href="css/style.css" rel="stylesheet" type="text/css">
-           <div class="jumbotron">HOLA</div><div class="jumbotron">HOLA</div><div class="jumbotron">HOLA</div>
-</div>
-     
 
 
+<script src="js/jquery-2.0.3.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/holder.js"></script>  
+<script src="js/tabs_old.js"></script>   
+<script type="text/javascript" src="../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 
 
 </body></html>

@@ -3,7 +3,7 @@ session_start();
 if(empty($_SESSION["id"])){
   $_SESSION = array();
   session_destroy();
-  header("Location: Index.html");
+  header("Location: Index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -184,8 +184,10 @@ if(empty($_SESSION["id"])){
     <script src="js/bootstrap.js"></script>
     <script src="js/holder.js"></script>   
     <script src="js/tabs_old.js"></script> 
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/modal.js"></script>
+    <script src="js/modal.js"></script> 
+
+    <script type="text/javascript" src="http://twitter.github.io/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+    <script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
    
 
   

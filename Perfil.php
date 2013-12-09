@@ -3,7 +3,7 @@ session_start();
 if(empty($_SESSION["id"])){
   $_SESSION = array();
   session_destroy();
-  header("Location: Index.html");
+  header("Location: Index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -72,9 +72,9 @@ if(empty($_SESSION["id"])){
           <li><a href="BuscarPartido.php">Buscar</a></li>          
         </ul>
       </li>
-      <li><a href="Mensajes.php">MENSAJES</a></li>  
+      <li><a href="Mensajes.php">MENSAJES</a></li> 
+      
     </ul>
- 
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown active">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -82,12 +82,13 @@ if(empty($_SESSION["id"])){
         </a>
         <ul class="dropdown-menu">
           <li class="disabled"><a href="Perfil.php">Perfil</a></li>
-          <li><a href="/#Amigos">Amigos</a></li>
+          <li class="disabled"><a href="/#Amigos">Amigos</a></li>
           <li class="divider"></li>
           <li><a href="logout.php">Cerrar Sesión</a></li>
         </ul>
       </li>
     </ul>
+    
   </div>
   
 </nav>
@@ -238,7 +239,7 @@ if(empty($_SESSION["id"])){
     <script src="js/tabs_old.js"></script>   
     <script type="text/javascript" src="../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
     
-
+    <script type="text/javascript" src="http://twitter.github.io/bootstrap/assets/js/bootstrap-dropdown.js"></script>
     <script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
     <script type="text/javascript">
 
