@@ -107,7 +107,7 @@ if(empty($_SESSION["id"])){
 
       <div id="tabscontent">
         <div class="tabpage" id="tabpage_1">
-          <h2>Mis Partidos <button type="submit" class="btn btn-success">Nuevo</button></h2>
+          <h2>Mis Partidos</h2>
 
 
               <table class="table">  
@@ -150,29 +150,24 @@ if(empty($_SESSION["id"])){
 
                  </tbody>  
               </table>
-            <h2>Información</h2>
-            
+            <h2>Nuevo Partido</h2>            
 
-            <form  action="insertarPartido.php" autocomplete="on" method="post"> 
-                Fecha: <input type=“datetime” placeholder="Día/Mes/Año" id="fecha" name=“fechahora”><br>
-                <br>
-                Hora: <input type="text" id="hora" ><br>
-                <br>
-                Lugar: <input type="text" id="lugar" ><br>
-                <br>
-                Direccion: <input type="text" id="direc" ><br>
-                <br>
-                Deporte: <input type="text" id="deporte" ><br>
-                <br>
-                Descripción: <input type="text" id="desc" ><br>
-                <br>
-                <p> 
-
-                <td> <button type="submit" class="btn btn-success">Agregar</button> </td>  
-                </p>
-
+            <form  action="#insertarPartido.php" autocomplete="on" method="post"> 
+            <dl class="dl-horizontal">
+              <dt>Deporte:</dt>
+              <dd><input id="deporte" name="deporte" required="required" type="text" placeholder="¿Qué jugaremos?" /></dd>
+              <dt>Fecha:</dt>
+              <dd><input id="fecha" name="fecha" required="required" type="text" placeholder="¿Cuándo?" /></dd>
+              <dt>Hora:</dt>
+              <dd><input id="hora" name="hora" required="required" type="text" placeholder="¿A qué hora?" /></dd>
+              <dt>Lugar:</dt>
+              <dd><input id="lugar" name="lugar" required="required" type="text" placeholder="¿En qué cancha?" /></dd>
+              <dt>Max. Jugadores:</dt>
+              <dd><input id="max_jugadores" name="max_jugadores" required="required" type="text" placeholder="¿Cuántos jugadores?" /></dd>
+              <dt></dt>
+              <dd><button type="submit" class="btn btn-success">Nuevo</button></dd>
+            </dl>
             </form>
-
               
         </div>
                 

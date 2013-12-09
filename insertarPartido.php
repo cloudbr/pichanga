@@ -13,33 +13,12 @@ if (!$db_selected) {
 
 $id=$_SESSION["id"]
 
-
-//if ($_SESSION["existe"]==0) {
-  //echo "<input type=\"text\" id=\"fecha\" value=\"".$_SESSION["fecha"]."\">";	
-  //echo "<input type=\"text\" id=\"hora\" value=\"".$_SESSION["hora"]."\">";	
-  //echo "<input type=\"text\" id=\"lugar\" value=\"".$_SESSION["lugar"]."\">";
-  //echo "<input type=\"text\" id=\"direc\" value=\"".$_SESSION["direc"]."\">";
-  //echo "<input type=\"text\" id=\"deporte\" value=\"".$_SESSION["deporte"]."\">";
-  //echo "<input type=\"text\" id=\"desc\" value=\"".$_SESSION["desc"]."\">";
-//}
-//else
-//{
-//$_SESSION["existe"]==1;
-//$_SESSION["fecha"]= $_POST["fecha"];
-//$_SESSION["hora"] = $_POST["hora"];
-//$_SESSION["lugar"]= $_POST["lugar"];  
-//$_SESSION["direc"]= $_POST["direc"];
-//$_SESSION["deporte"]= $_POST["deporte"]; 
-//$_SESSION["desc"] = $_POST["desc"];  
-//}
-
-
 $fecha = $_POST["fecha"];
 $hora = $_POST["hora"];
 $lugar = $_POST["lugar"];  
 $direc = $_POST["direc"];  
-$deporte = $_POST["deporte"];  
-$desc = $_POST["desc"];  
+$deporte = $_POST["deporte"];
+$n_jugadores = $_POST["max_jugadores"];  
 
 $qry = mysql_query("INSERT INTO partido (id_usuario,fecha,hora_inicio,lugar,direccion,deporte,descripcion) VALUES ('$id','$fecha','$hora', '$lugar','$direc','$deporte','$desc') ");
 header("Location: ConfPartido.php");          
