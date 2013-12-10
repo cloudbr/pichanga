@@ -11,9 +11,9 @@ if (!$db_selected) {
 }
 
 
+
 $id = $_GET["id"];
 
-
-$qry = mysql_query("DELETE FROM bloque_libre WHERE id=".$id."") or die("Error en: " . mysql_error());
-header("Location: Perfil.php");
+$qry = mysql_query("DELETE FROM partido WHERE id=".$id."") or die("Error en: " . mysql_error());
+header("Location: ConfPartido.php");  
 ?>

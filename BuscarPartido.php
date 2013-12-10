@@ -26,7 +26,38 @@ if(empty($_SESSION["id"])){
     <link href="css/justified-nav.css" rel="stylesheet">
     <link href="css/carousel.css" rel="stylesheet">
 	<style type="text/css" id="holderjs-style"></style></head>
-    
+   
+    <!-- ajax amigos -->
+       <script>
+function showUser(str)
+{
+if (str=="")
+  {
+  document.getElementById("txtHint").innerHTML="";
+  return;
+  } 
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","buscarpornombre.php?q="+str,true);
+xmlhttp.send();
+}
+
+      </script>
+
+
   </head>
 
   <body>
@@ -92,37 +123,70 @@ if(empty($_SESSION["id"])){
             <div id="tabContainer">
               <div id="tabs">
                 <ul>
-                  <li id="tabHeader_1">MIS HORARIOS</li>
-                  <li id="tabHeader_2">MIS AMIGOS</li>
-                  <li id="tabHeader_3">VER TODOS</li>
+                  <li id="tabHeader_1">Buscar</li>
                 </ul>
               </div>
               <div id="tabscontent">
                 <div class="tabpage" id="tabpage_1">
-                  <h2>Mi horario</h2>
-                  
-                  <p> Lunes 7x7 Futbol. <button type="submit" class="btn">Aceptar</button>   </p> 
+                  <h2>Recomendados segun mi horario</h2>
 
+                  <table class="table">  
+                      <thead><tr><th>Fecha</th><th>Hora</th><th>Lugar</th><th>Deporte</th><th>Opción</th></tr></thead>  
+                      <tbody>  
+                     
+                      <?php
+                            $bloc[100];
+                            $dia[100];
+
+                            $x=0;
+
+                            $link =mysql_connect("localhost", "root", "a");
+
+                            if (!$link) {
+                                trigger_error('Error al conectar al servidor mysql: ' . mysql_error(),E_USER_ERROR);
+                            }
+
+                            $db_selected = mysql_select_db("pichangachanga",$link) OR DIE ("Error: No es posible establecer la conexión");
+                            if (!$db_selected) {
+                                trigger_error ('Error al conectar a la base de datos: ' . mysql_error(),E_USER_ERROR);
+                            }
+
+
+                            $id = $_SESSION["id"];
+                            
+                            $qry = mysql_query("SELECT * FROM bloque_libre WHERE id_usuario=".$id."") or die("Error en: $busqueda: " . mysql_error());
+                            
+                            if (!$qry)
+                              echo '<tr><td>No hay datos</td></tr>';
+                            else{ 
+                            while ($filas = mysql_fetch_assoc($qry)) {
+                            $bloc[$x]=$filas["inicio"];
+                            $dia[$x]=$filas["dia"];
+                            //echo  $bloc[$x];
+                            //echo  $dia[$x];
+                            $x=$x+1;
+                            //echo $filas["id_partido"];
+                                                                      }
+                                } 
+                            
+                      ?>  
+
+                       </tbody>  
+                    </table>
                 </div>
-                <div class="tabpage" id="tabpage_2">
-                  <h2>Mis amigos</h2>
 
-                   <p> Francisco: Martes 7x7 Futbol. <button type="submit" class="btn">Aceptar</button>   </p> 
-                  
-                </div>
-                <div class="tabpage" id="tabpage_3">
-                  <h2>Los ultimos agredos</h2>
-                  <p> Lunes 7x7 Futbol. <button type="submit" class="btn">Aceptar</button>   </p>
-                  <p> Francisco: Martes 7x7 Futbol. <button type="submit" class="btn">Aceptar</button>   </p> 
-
-
-                </div>
               <!-- </div> -->
 
              <!--Buscar --> 
 <!--             <div id="Buscar"> -->
              <h2>Personalizada</h2>
-             <p>Nombre: <input type=“search” name=“busqueda”> <button type="submit" class="btn">Buscar</button> </p>
+                            <form> 
+                            <p>Nombre: <input type="text" onkeyup="showUser(this.value)">
+                            </form>
+                            <br> 
+                            <div id="txtHint"><b>Por Compañero</b></div><td> 
+                            <br> 
+                            <button type="submit" class="btn">Agregar</button> </td>  
        
 
              <p>Fecha: <input type="date" name="partido" step="1" min="2013-01-01" max="2013-12-31" value="2013-01-01"> <button type="submit" class="btn">Buscar</button>  </p> 

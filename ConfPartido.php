@@ -18,6 +18,9 @@ if(empty($_SESSION["id"])){
 
     <title>PichangaChanga</title>
 
+
+
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
 
@@ -100,7 +103,7 @@ if(empty($_SESSION["id"])){
       <div id="tabs">
         <ul>
           <li id="tabHeader_1">Datos del partido</li>
-          <li id="tabHeader_2">Amigos</li>
+          <li id="tabHeader_2">Partidos Amigos</li>
           <li id="tabHeader_3">Publicar Facebook</li>
         </ul>
       </div>
@@ -111,11 +114,11 @@ if(empty($_SESSION["id"])){
 
 
               <table class="table">  
-                <thead><tr><th>Fecha</th><th>Hora</th><th>Lugar</th><th>Deporte</th><th>Opción</th></tr></thead>  
+                <thead><tr><th>Fecha</th><th>Hora</th><th>Lugar</th><th>Deporte</th><th>Opción</th><th>Amigos</th></tr></thead>  
                 <tbody>  
                
                 <?php
-                      $link =mysql_connect("localhost", "root", "");
+                      $link =mysql_connect("localhost", "root", "a");
 
                       if (!$link) {
                           trigger_error('Error al conectar al servidor mysql: ' . mysql_error(),E_USER_ERROR);
@@ -141,7 +144,8 @@ if(empty($_SESSION["id"])){
                                       <td>'.$filas["hora_inicio"].'</td>
                                       <td>'.$filas["lugar"].'</td>
                                       <td>'.$filas["deporte"].'</td>
-                                      <td><button type="submit" class="btn">Borrar</button></td>
+                                      <td><a href="borrar_partido.php?id='.$filas["id"].'"><font color="black">Borrar</font></a></td>
+                                      <td><a href="JugadoresPartido.php?id='.$filas["id"].'"><font color="black">Jugadores</font></a></td>
                                       <tr>';
                           }
 
@@ -150,16 +154,19 @@ if(empty($_SESSION["id"])){
 
                  </tbody>  
               </table>
+
+
+
             <h2>Nuevo Partido</h2>            
 
-            <form  action="#insertarPartido.php" autocomplete="on" method="post"> 
+            <form  action="insertarPartido.php" autocomplete="on" method="post"> 
             <dl class="dl-horizontal">
               <dt>Deporte:</dt>
               <dd><input id="deporte" name="deporte" required="required" type="text" placeholder="¿Qué jugaremos?" /></dd>
               <dt>Fecha:</dt>
-              <dd><input id="fecha" name="fecha" required="required" type="text" placeholder="¿Cuándo?" /></dd>
+              <dd><input id="fecha" name="fecha" size="16" type="text" placeholder="¿Cuándo?" readonly class="form_datetime" required="required"/><dd>
               <dt>Hora:</dt>
-              <dd><input id="hora" name="hora" required="required" type="text" placeholder="¿A qué hora?" /></dd>
+              <dd><input id="hora" name="hora" size="16" type="text" placeholder="¿A qué hora?" readonly class="form_time" required="required"/><dd>
               <dt>Lugar:</dt>
               <dd><input id="lugar" name="lugar" required="required" type="text" placeholder="¿En qué cancha?" /></dd>
               <dt>Max. Jugadores:</dt>
@@ -172,54 +179,70 @@ if(empty($_SESSION["id"])){
         </div>
                 
         <div class="tabpage" id="tabpage_2">
-          <h2>Amigos</h2>
-          <p>Nombre:
-          <select>
-            <option value="Juan">Juan</option>
-            <option value="Pedro">Saab</option>
-            
-          </select>
-
-          <button type="submit" class="btn">Agregar</button>
-
-          </p> 
-
-          <h2>Compañeros</h2>
-
-          <p>Nombre: <input type=“search” name=“busqueda”> <button id="amigo" type="submit" class="btn">Buscar</button> </p>
+          <h2>Partidos Amigos</h2>
           
-          <h3>Resultados</h3>
 
-            <table class="table">  
-            <thead>  
-              <tr>  
-                <th>Nombre</th>  
-                <th>Apellido</th>  
-                <th>Agregar</th>  
-              </tr>  
-            </thead>                
-            <tbody>  </tbody>  
-          </table>  
+             <table class="table">  
+                <thead><tr><th>Fecha</th><th>Hora</th><th>Lugar</th><th>Deporte</th></tr></thead>  
+                <tbody>  
+               
+                <?php
+                      
+                      $cont[10];
+                      $x=0;
+                      $link =mysql_connect("localhost", "root", "a","pichangachanga");
+
+                      if (!$link) {
+                          trigger_error('Error al conectar al servidor mysql: ' . mysql_error(),E_USER_ERROR);
+                      }
+
+                      $db_selected = mysql_select_db("pichangachanga",$link) OR DIE ("Error: No es posible establecer la conexión");
+                      if (!$db_selected) {
+                          trigger_error ('Error al conectar a la base de datos: ' . mysql_error(),E_USER_ERROR);
+                      }
 
 
-          <h3>Agregados</h3>
+                      $id = $_SESSION["id"];
+                      
+                      $qry = mysql_query("SELECT * FROM jugador WHERE id_usuario=".$id."") or die("Error en: $busqueda: " . mysql_error());
+                      
+                       if (!$qry)
+                        echo '<tr><td>No hay datos</td></tr>';
+                       else{ 
+                            while ($filas = mysql_fetch_assoc($qry)) {
+                            $cont[$x]=$filas["id_partido"];
+                            $x=$x+1;
+                             
+                            //echo $filas["id_partido"];
 
-          <table class="table">  
-            <thead>  
-              <tr>  
-                <th>Nombre</th>  
-                <th>Apellido</th>  
-                <th>Editar</th>   
-              </tr>  
-            </thead>  
-            <tbody>  
-              <tr>  
-                <td>Felipe</td>  
-                <td>Navarro </td>  
-                <td> <button type="submit" class="btn">Borrar</button> </td>    
-              </tr>  
-            </tbody> 
-          </table>  
+                                                                      }
+
+                            }
+
+                            //echo $x;
+                            for ($i = 0; $i < $x; $i++) {
+                                    
+                                    $qry2 = mysql_query("SELECT * FROM partido WHERE id=".$cont[$i]."") or die("Error en: $busqueda: " . mysql_error());
+                                    //echo $cont[$i];
+                                    while ($filas2 = mysql_fetch_assoc($qry2)) {
+                                      echo '<tr>
+                                      <td>'.$filas2["fecha"].'</td>
+                                      <td>'.$filas2["hora_inicio"].'</td>
+                                      <td>'.$filas2["lugar"].'</td>
+                                      <td>'.$filas2["deporte"].'</td>
+                                      <tr>';
+                                                                          }  
+                               }
+
+
+
+                   ?>  
+
+                 </tbody>  
+              </table>
+
+
+      
         </div>
 
 
@@ -247,6 +270,12 @@ if(empty($_SESSION["id"])){
       </div>
 
 
+
+
+
+      
+
+
       <!-- Jumbotron -->
       <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
       <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
@@ -269,11 +298,58 @@ if(empty($_SESSION["id"])){
   <!-- Bootstrap core JavaScript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
+
+
+
+  <!-- JQuery -->
   <script src="js/jquery-2.0.3.js"></script>
+
+
+  <!-- BootStrap Link -->
   <script src="js/bootstrap.js"></script>
   <script src="js/holder.js"></script>  
-  <script src="js/tabs_old.js"></script>  
-  
+  <script src="js/tabs_old.js"></script> 
+
+
+    <!-- DatePicker -->
+  <script type="text/javascript" src="../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+  <script type="text/javascript">
+
+
+      $(".form_datetime").datetimepicker({
+      minView: 2,
+      autoclose: 1,
+      format: 'yyyy-mm-dd'
+    });
+
+      $('.form_date').datetimepicker({
+            language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+        });
+
+              
+
+      $('.form_time').datetimepicker({
+            minView: 1, 
+            pickTime: true, 
+            pickDate: false,
+            maxView: 1,
+        autoclose: 1,
+        startView: 1,
+        format: 'h:00'
+        
+
+        });
+
+
+    </script>
 
 </body>
 </html>

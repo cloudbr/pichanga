@@ -1,6 +1,6 @@
 <?php
 session_start();
-$link =mysql_connect("localhost", "root", "");
+$link =mysql_connect("localhost", "root", "a");
 
 if (!$link) {
     trigger_error('Error al conectar al servidor mysql: ' . mysql_error(),E_USER_ERROR);

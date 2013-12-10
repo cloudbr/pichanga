@@ -1,7 +1,8 @@
 <?php
-$q = intval($_GET['q']);
 
+$q=$_GET["q"];
 
+//echo $q ;
 
 $con = mysqli_connect('localhost','root','a','pichangachanga');
 if (!$con)
@@ -10,7 +11,7 @@ if (!$con)
   }
 
 mysqli_select_db($con,"ajax_demo");
-$sql="SELECT * FROM usuario WHERE id = '".$q."'";
+$sql="SELECT * FROM usuario WHERE nombre = '".$q."'";
 
 $result = mysqli_query($con,$sql);
 
@@ -19,7 +20,6 @@ echo "<table border='1'>
 <th>Nombre</th>
 <th>Correo</th>
 </tr>";
-
 
 
 while($row = mysqli_fetch_array($result))
