@@ -1,17 +1,27 @@
 <?php
+$link =mysql_connect("localhost", "root", "a");
 
-$resultado = "";
-/* Filtrar los datos */
-$nombre = $_POST["nombre"];
-$correo = $_POST["correo"];
-$pass = $_POST["passwordsignup"];
-$telefono = $_POST["telefono"];
+if (!$link) {
+    trigger_error('Error al conectar al servidor mysql: ' . mysql_error(),E_USER_ERROR);
+}
 
-/* Crear un Array. Simulando una consulta a una base de datos */
-//$qry = mysql_query("INSERT INTO usuario (nombre,correo,password,telefono) VALUES ('".$nombre."','".$correo."','".$pass."','".$telefono."')") or die("Error" . mysql_error());
+$db_selected = mysql_select_db("pichangachanga",$link) OR DIE ("Error: No es posible establecer la conexión");
+if (!$db_selected) {
+    trigger_error ('Error al conectar a la base de datos: ' . mysql_error(),E_USER_ERROR);
+}
 
-  
+$nombre = $_POST["nombreRegistro"];
+$correo = $_POST["emailRegistro"];
+$clave = $_POST["claveRegistro"];
+$telefono = $_POST["numeroRegistro"];
 
 
 
+$qry = mysql_query("INSERT INTO usuario (nombre,correo,password,telefono) VALUES ('".$nombre."','".$correo."','".$clave."','".$telefono."') ") or die("Error" . mysql_error());
+
+
+
+
+header("Location: ConfPartido.php");          
 ?>
+

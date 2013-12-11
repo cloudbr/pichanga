@@ -63,35 +63,40 @@ if(!empty($_SESSION["id"])){
                                 <p class="login button"> 
                                     <input type="submit" value="Login" /> 
 								</p>
-                               <!-- <p class="change_link">
+                                <p class="change_link">
 									¿Olvidaste tu contraseña?
 									<a href="#toregister" class="to_register" disable>Reg&iacute;strate</a>
-								</p>-->
+								</p>
                             </form>
                         </div>
 
                         <div id="register" class="animate form">
-                            <form  action="Perfil.html" autocomplete="on" method="post"> 
+                            <form  action="registrar.php" autocomplete="on" method="post"> 
                                 <h1> Registro </h1> 
                                 <p> 
-                                    <label for="usernamesignup" class="uname" >Your username</label>
-                                    <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="myusername" />
+                                    <label for="usernamesignup" class="uname" >Nombre Completo</label>
+									<input id="nombreRegistro" name="nombreRegistro" required="required" type="text" placeholder="Nombre Nombre Apellido Apellido" />
                                 </p>
                                 <p> 
-                                    <label for="emailsignup" class="youmail"  > Your email</label>
-                                    <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="Mymail@mail.com"/> 
+                                    <label for="emailsignup" class="youmail"  > Email</label>
+									<input id="emailRegistro" name="emailRegistro" required="required" type="email" placeholder="email@mail.com" />
                                 </p>
                                 <p> 
-                                    <label for="passwordsignup" class="youpasswd">Your password </label>
-                                    <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="********"/>
+                                    <label for="number" class="number"  > Telefono</label>                                   
+									<input id="numeroRegistro" name="numeroRegistro" required="required" type="text" pattern="[0-9]*" placeholder="111 222 33" />
+                                </p>								
+                                <p> 
+                                    <label for="passwordsignup" class="youpasswd">Clave </label>                                    
+									<input id="claveRegistro" name="claveRegistro" required="required" type="password" placeholder="********" />
                                 </p>
                                 <p> 
-                                    <label for="passwordsignup_confirm" class="youpasswd" >Please confirm your password </label>
-                                    <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="********"/>
+                                    <label for="passwordsignup_confirm" class="youpasswd" >Confirmar Clave </label>                                    
+									<input id="claveRegistro_confirm" name="claveRegistro_confirm" required="required" type="password" placeholder="********" />
                                 </p>
                                 <p class="signin button"> 
-									<input type="submit" value="Sign up"/> 
-								</p>
+									<button type="submit" class="btn btn-success">Nuevo</button>
+								</p>							
+								
                                 <p class="change_link">  
 									¿Ya eres usuario?
 									<a href="#tologin" class="to_register"> Ir al login </a>
