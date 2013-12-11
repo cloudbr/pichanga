@@ -22,6 +22,6 @@ $qry = mysql_query("INSERT INTO usuario (nombre,correo,password,telefono) VALUES
 
 
 
-header("Location: ConfPartido.php");          
+header("Location: Index.php");          
 ?>
 

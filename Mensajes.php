@@ -73,7 +73,7 @@ if(empty($_SESSION["id"])){
         </a>
         <ul class="dropdown-menu">
           <li class="active"><a href="Mensajes.php">Entrada</a></li> 
-          <li><a href="#">Redactar</a></li> 
+          <li><a href="redactar.php">Redactar</a></li> 
         </ul>
     </ul>
  
@@ -167,12 +167,7 @@ if(empty($_SESSION["id"])){
                       mysql_close($con);
                       ?>
                  </div> 
-               
-
-
-              
-        
-    
+				 									 
        
       <!-- Jumbotron -->
           <script src="http://code.jquery.com/jquery-1.8.2.js"></script>

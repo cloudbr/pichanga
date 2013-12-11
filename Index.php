@@ -75,7 +75,7 @@ if(!empty($_SESSION["id"])){
                                 <h1> Registro </h1> 
                                 <p> 
                                     <label for="usernamesignup" class="uname" >Nombre Completo</label>
-									<input id="nombreRegistro" name="nombreRegistro" required="required" type="text" placeholder="Nombre Nombre Apellido Apellido" />
+									<input id="nombreRegistro" name="nombreRegistro" required="required" type="text" placeholder="Nombre Apellido" />
                                 </p>
                                 <p> 
                                     <label for="emailsignup" class="youmail"  > Email</label>
