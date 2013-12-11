@@ -63,7 +63,7 @@ xmlhttp.send();
 
 <!-- ajax  compañeros-->
 <script>
-function showHint(str,int)
+function showHint(str)
 {
 if (str.length==0)
   { 
@@ -85,7 +85,7 @@ xmlhttp.onreadystatechange=function()
     document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
     }
   }
-echo "buenas";  
+
 xmlhttp.open("GET","buscarCompa.php?q="+str,true);
 xmlhttp.send();
 }
