@@ -2,7 +2,6 @@
 
 $q=$_GET["q"];
 
-//echo $q ;
 
 $con = mysqli_connect('localhost','root','a','pichangachanga');
 if (!$con)
@@ -19,20 +18,20 @@ echo '<table class="table table-condensed">
 <thead>  
 <tr>  
   <th>Nombre</th>  
-  <th>Correo</th>  
+  <th>Correo</th>
+  <th>Opción</th>   
 </tr>  
 </thead>
 <tbody>';
+while($row = mysqli_fetch_array($result)){
+      echo '<tr>
+      <td>'. $row['nombre'] .'</td>
+      <td>'. $row['correo'] . '</td>
+      <td><a href="AgregarCompa.php?id='.$row['id'].'& id_partido='.$row['id'].'"><font color="black">Agregar</font></a></td>
+      <tr>';
+      }
+  
 
-
-while($row = mysqli_fetch_array($result))
-  {
-  echo "<tr>";
-  echo "<td>" . $row['nombre'] . "</td>";
-  echo "<td>" . $row['correo'] . "</td>";
-  echo "</tr>";
-  }
 echo "</tbody></table>";
-
 mysqli_close($con);
 ?>

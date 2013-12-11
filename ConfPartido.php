@@ -5,6 +5,11 @@ if(empty($_SESSION["id"])){
   session_destroy();
   header("Location: Index.php");
 }
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en"><head>
@@ -37,7 +42,19 @@ if(empty($_SESSION["id"])){
     <![endif]-->
   </head>
 
+
+
   <body>
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 
     <!-- MENU FIJADO EN TOP -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -102,6 +119,7 @@ if(empty($_SESSION["id"])){
       <div id="tabs">
         <ul>
           <li id="tabHeader_1">Datos del partido</li>
+          <li id="tabHeader_2">Partido Inscritos</li>
           <li id="tabHeader_3">Publicar Facebook</li>
         </ul>
       </div>
@@ -157,7 +175,7 @@ if(empty($_SESSION["id"])){
 
             <h2>Nuevo Partido</h2>            
 
-            <form  action="insertarPartido.php" autocomplete="on" method="post"> 
+            
             <dl class="dl-horizontal">
               <dt>Deporte:</dt>
               <dd><input id="deporte" name="deporte" required="required" type="text" placeholder="¿Qué jugaremos?" /></dd>
@@ -228,7 +246,7 @@ if(empty($_SESSION["id"])){
                                       <td>'.$filas2["hora_inicio"].'</td>
                                       <td>'.$filas2["lugar"].'</td>
                                       <td>'.$filas2["deporte"].'</td>
-                                      <tr>';
+                                      </tr>';
                                                                           }  
                                }
 
@@ -261,6 +279,9 @@ if(empty($_SESSION["id"])){
             <tbody></tbody> 
           </table> 
           <br>
+
+          <div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-type="button_count"></div>
+
           <p><button type="button" class="btn btn-primary" disabled="disabled" >Facebook</button></p>
         </div>
                 
