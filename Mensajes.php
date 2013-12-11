@@ -67,7 +67,14 @@ if(empty($_SESSION["id"])){
           <li><a href="BuscarPartido.php">Buscar</a></li>          
         </ul>
       </li>
-      <li class="active"><a href="Mensajes.php">MENSAJES</a></li>  
+      <li class="dropdown active">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+           ENTRADA <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="active"><a href="Mensajes.php">Entrada</a></li> 
+          <li><a href="#">Redactar</a></li> 
+        </ul>
     </ul>
  
     <ul class="nav navbar-nav navbar-right">
@@ -77,7 +84,6 @@ if(empty($_SESSION["id"])){
         </a>
         <ul class="dropdown-menu">
           <li><a href="Perfil.php">Perfil</a></li>
-          <li><a href="#">Amigos</a></li>
           <li class="divider"></li>
           <li><a href="logout.php">Cerrar Sesión</a></li>
         </ul>
@@ -94,68 +100,78 @@ if(empty($_SESSION["id"])){
         <div id="wrapper">
             <link href="css/style.css" rel="stylesheet" type="text/css">
             <div id="tabContainer">
-              <div id="tabs">
-                <ul>
-                  <li id="tabHeader_1">Nuevos</li>
-                  <li id="tabHeader_2">Favoritos</li>
-                  <li id="tabHeader_3">Papelera</li>
-                </ul>
-              </div>
+              
+                  <div class="panel-group" id="accordion">
+                  <?php
 
+                      $id = $_SESSION["id"];
+                      $hoy = date("Y-m-d");
 
+                      $cont = 0;
+                      $con = mysql_connect('localhost','root','a');
+                      if (!$con){
+                        die('Could not connect: ' . mysqli_error($con));
+                      }
 
-              <div id="tabscontent">
-                <div class="tabpage" id="tabpage_1">
-                  <h2>Mensajes</h2>
-                  <!-- Modal -->
-                  <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Launch demo modal</button>
+                      mysql_select_db("pichangachanga");
+                      $sql="SELECT * FROM mensajes WHERE id_receptor=".$id." ORDER BY fecha";
 
-                              
+                      $result = mysql_query($sql);
+                      while($row = mysql_fetch_assoc($result)){
+                            $fech = $row["fecha"];                                
+                            $fecha = explode("-", $fech);
+                            $anio = $fecha[0];                                
+                            $mes = (int)$fecha[1];
+                            $dia = $fecha[2];
+                            $meses = array (0,"Enero","Febrero","Marzo","Abril","Mayo","Junio ","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+                            $dias = array ("Domingo","Lunes","Martes","Miercoles","Jueves"," Viernes","Sabado");
+                            $nombredia = date("w",mktime(0,0,0,$mes,$dia,$anio));
+                            $fmes = $meses[$mes];
+                            $fdia = $dias[$nombredia];
+                                                      
+                              $result2 = mysql_query("SELECT * FROM usuario WHERE id = ".$row["id_emisor"]);
+                              if($emisor = mysql_fetch_assoc($result2)){
+                                    $cont++;
+                                    echo '<div class="panel panel-success">
+                                            <div class="panel-heading">
+                                              <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse'.$row["id"].'">
+                                                <font color="#000000">
+                                                 DE: '.$emisor["nombre"].'<br>'.$fdia.', '.$dia.' de '.$fmes.' del '.$anio.'
+                                                 </font>
+                                                </a>
+                                              </h4>
+                                            </div>
+                                            <div id="collapse'.$row["id"].'" class="panel-collapse collapse out">
+                                              <div class="panel-body">
+                                                <p>'.$row["msn"].'
+                                              </div>
+                                            </div>
+                                          </div>';
+                                        }
+                      }                            
+                      if($cont == 0)
+                        echo '<div class="panel panel-success">
+                                <div class="panel-heading">
+                                  <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse'.$row["id"].'">
+                                    <font color="#000000">
+                                     No Tienes Mensajes.
+                                     </font>
+                                    </a>
+                                  </h4>
+                                </div>
+                                
+                              </div>';
+                      
+                      mysql_close($con);
+                      ?>
+                 </div> 
+               
 
-                 
-                </div><!-- /.modal -->                      
-        
-                                                     
 
               
-                <div class="tabpage" id="tabpage_2">
-                  <h2>Mensajes</h2>
-                   <table class="table">  
-                      <thead>  
-                        <tr>  
-                          <th>De:</th>  
-                          <th>Motivo:</th>    
-                        </tr>  
-                      </thead>  
-                      <tbody>  
-                        <tr>  
-                          <td>Juan</td>  
-                          <td></td>  
-                        </tr>  
-                      </tbody> 
-                      </table> 
-              </div>
-
-
-              <div class="tabpage" id="tabpage_3">
-                <h2>Mensajes</h2>
-                     <table class="table">  
-                      <thead>  
-                        <tr>  
-                          <th>De:</th>  
-                          <th>Motivo:</th>    
-                        </tr>  
-                      </thead>  
-                      <tbody>  
-                        <tr>  
-                          <td>Juan</td>  
-                          <td></td>  
-                        </tr>  
-                      </tbody> 
-                    </table>
-                
-            </div>
-         </div>
+        
     
        
       <!-- Jumbotron -->

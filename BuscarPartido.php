@@ -98,7 +98,14 @@ if(empty($_SESSION["id"])){
           <li class="disabled"><a href="BuscarPartido.php">Buscar</a></li>          
         </ul>
       </li>
-      <li><a href="Mensajes.php">MENSAJES</a></li>  
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+           ENTRADA <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="Mensajes.php">Entrada</a></li> 
+          <li><a href="#">Redactar</a></li> 
+        </ul> 
     </ul>
  
     <ul class="nav navbar-nav navbar-right">
@@ -128,7 +135,6 @@ if(empty($_SESSION["id"])){
         <div id="tabs">
             <ul class = "css_tabs">
               <li id="tabHeader_1">Compatibles</li>
-              <li id="tabHeader_2">Por Fecha</li>
               <li id="tabHeader_3">Por Deporte</li>
             </ul>
         </div>

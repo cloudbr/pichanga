@@ -7,10 +7,9 @@ $q=$_GET["q"];
 
 
 $con = mysqli_connect('localhost','root','a','pichangachanga');
-if (!$con)
-  {
+if (!$con){
   die('Could not connect: ' . mysqli_error($con));
-  }
+}
 
 mysqli_select_db($con,"ajax_demo");
 $sql="SELECT * FROM partido WHERE id_usuario!=".$id." AND deporte LIKE '%".$q."%'";

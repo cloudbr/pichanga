@@ -6,6 +6,7 @@ if(empty($_SESSION["id"])){
   header("Location: Index.php");
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en"><head>
 <link href="style.css" rel="stylesheet" type="text/css">
@@ -57,7 +58,7 @@ xmlhttp.open("GET","buscarAmigo.php?q="+str,true);
 xmlhttp.send();
 }
 
-      </script>
+</script>
 
 
 
@@ -85,8 +86,8 @@ xmlhttp.onreadystatechange=function()
     document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
     }
   }
-
-xmlhttp.open("GET","buscarCompa.php?q="+str,true);
+var partido = '<?php echo $_GET["id"]; ?>' ;
+xmlhttp.open("GET","buscarCompa.php?partido="+partido+"&q="+str,true);
 xmlhttp.send();
 }
 </script>
@@ -127,7 +128,14 @@ xmlhttp.send();
           <li><a href="BuscarPartido.php">Buscar</a></li>          
         </ul>
       </li>
-      <li><a href="Mensajes.php">MENSAJES</a></li>  
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+           ENTRADA <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="Mensajes.php">Entrada</a></li> 
+          <li><a href="#">Redactar</a></li> 
+        </ul>   
     </ul>
  
     <ul class="nav navbar-nav navbar-right">
@@ -147,12 +155,6 @@ xmlhttp.send();
 </nav>
 
 <!-- END MENU -->
-      
-  
-
-
-
-
 
   <!--i segundo menu --> 
     <!--i configurar para cada nav activo en cada caso --> 
@@ -174,27 +176,72 @@ xmlhttp.send();
                             </form>
 
                             <br> 
-                            <div id="txtHint"><b>Información Compañero</b></div>
-                            <br> 
-                            <button type="submit" class="btn">Agregar</button>     
+                            <div id="txtHint"></div>
+                            <br>     
 
 
-               <h3>Total</h3>
+               <h3>Inscritos</h3>
 
                 <table class="table">  
                   <thead>  
                     <tr>  
                       <th>Nombre</th>  
-                      <th>Apellido</th>  
-                      <th>Editar</th>   
+                      <th>Correo</th>  
+                      <th>Telefono</th>
+                      <th>Estado</th>
+                      <th></th> 
                     </tr>  
                   </thead>  
                   <tbody>  
-                    <tr>  
-                      <td>Felipe</td>  
-                      <td>Navarro </td>  
-                      <td> <button type="submit" class="btn">Borrar</button> </td>    
-                    </tr>  
+                    <?php
+                      $id_partido = $_GET["id"];
+                      $link =mysql_connect("localhost", "root", "a");
+
+                      if (!$link) {
+                          trigger_error('Error al conectar al servidor mysql: ' . mysql_error(),E_USER_ERROR);
+                      }
+
+                      $db_selected = mysql_select_db("pichangachanga",$link) OR DIE ("Error: No es posible establecer la conexión");
+                      if (!$db_selected) {
+                          trigger_error ('Error al conectar a la base de datos: ' . mysql_error(),E_USER_ERROR);
+                      }
+
+                      $opcion = "";
+                      $estado = "";
+                      $tel = "No hay registro";
+                      $cont = 0;
+                      $qry = mysql_query("SELECT * FROM jugador WHERE id_partido=".$id_partido."") or die("Error en: $busqueda: " . mysql_error());
+                      
+                      while($row = mysql_fetch_assoc($qry)){
+                        if($row["estado"]== 0){
+                          $estado = "Esperando Respuesta";
+                          //$opcion = '<input type="button" class="btn btn_success" value="Aceptar"/>';
+                        }
+
+                        if($row["estado"] == 1)
+                          $estado = "Confirmado";
+                        if($row["estado"] == 2)
+                          continue;
+
+                        $qry2 = mysql_query("SELECT * FROM usuario WHERE id=".$row["id_usuario"]."") or die("Error en: $busqueda: " . mysql_error());
+                        $jugador = mysql_fetch_assoc($qry2);
+
+                        if($jugador["telefono"]!=0)
+                          $tel = $jugador["telefono"];
+                        echo '
+                            <tr>
+                            <td>'.$jugador["nombre"].'</td>
+                            <td>'.$jugador["correo"].'</td>
+                            <td>'.$tel.'</td>
+                            <td>'.$estado.'</td>
+                            <td>'.$opcion.'</td>
+                            </tr>';
+                            $cont++; 
+                      }
+
+                              
+                        
+                ?>    
                   </tbody> 
                 </table>              
            

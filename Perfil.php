@@ -72,7 +72,14 @@ if(empty($_SESSION["id"])){
           <li><a href="BuscarPartido.php">Buscar</a></li>          
         </ul>
       </li>
-      <li><a href="Mensajes.php">MENSAJES</a></li> 
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+           MENSAJES <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="Mensajes.php">Entrada</a></li> 
+          <li><a href="#">Redactar</a></li> 
+        </ul> 
       
     </ul>
     <ul class="nav navbar-nav navbar-right">

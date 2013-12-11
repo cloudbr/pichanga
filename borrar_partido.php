@@ -1,4 +1,5 @@
 <?php
+session_start();
 $link =mysql_connect("localhost", "root", "a");
 
 if (!$link) {
@@ -11,18 +12,21 @@ if (!$db_selected) {
 }
 
 
-
+$hoy = date("Y-m-d");
 $id_partido = $_GET["id"];
 
+$qryp = mysql_query("SELECT * FROM partido WHERE id=".$id_partido) or die("Error en: " . mysql_error());
+$partido = mysql_fetch_assoc($qryp);
+
 $qry1= mysql_query("SELECT * FROM jugador WHERE id_partido = ".$id_partido."") or die("Error en: " . mysql_error());
-$data=mysql_num_rows($qry1);
-if($data > 0)
-	while($j = mysql_fetch_assoc($qry1)){
-		$qry2 = mysql_query("DELETE FROM jugador WHERE id=".$id_partido."") or die("Error en: " . mysql_error());
-	}
-		
+
+while($j = mysql_fetch_assoc($qry1)){
+		$qrym = mysql_query("INSERT INTO mensajes (id_receptor,id_emisor,fecha,msn,estado) VALUES(".$j["id_usuario"].",".$_SESSION["id"].",'".$hoy."','Lo siento. Se ha suspendido el partido del ".$partido["fecha"]."',0)")or die("Error en: " . mysql_error());
+		$qry2 = mysql_query("DELETE FROM jugador WHERE id_partido=".$id_partido." AND id_usuario=".$j["id_usuario"]) or die("Error en: " . mysql_error());
+}
 
 $qry2 = mysql_query("DELETE FROM partido WHERE id=".$id_partido."") or die("Error en: " . mysql_error());
+
 
 
 header("Location: ConfPartido.php");
