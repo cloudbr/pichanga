@@ -176,6 +176,7 @@ if(empty($_SESSION["id"])){
                               <option>Jueves</option>
                               <option>Viernes</option>
                               <option>Sabado</option>
+                              <option>Domingo</option>
                             </select>
                             
                          

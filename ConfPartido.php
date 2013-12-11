@@ -7,9 +7,6 @@ if(empty($_SESSION["id"])){
 }
 
 
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en"><head>
@@ -130,7 +127,7 @@ if(empty($_SESSION["id"])){
 
 
               <table class="table">  
-                <thead><tr><th>Fecha</th><th>Hora</th><th>Lugar</th><th>Deporte</th><th>Opción</th><th>Amigos</th></tr></thead>  
+                <thead><tr><th>Fecha</th><th>Hora</th><th>Lugar</th><th>Deporte</th><th></th><th></th></tr></thead>  
                 <tbody>  
                
                 <?php
@@ -147,7 +144,7 @@ if(empty($_SESSION["id"])){
 
 
                       $id = $_SESSION["id"];
-                      
+                      $hoy = date("Y-m-d");
                       $qry = mysql_query("SELECT * FROM partido WHERE id_usuario=".$id."") or die("Error en: $busqueda: " . mysql_error());
                       
                       if (!$qry)
@@ -155,14 +152,29 @@ if(empty($_SESSION["id"])){
                       else{
                           
                           while ($filas = mysql_fetch_assoc($qry)) {
-                                echo '<tr>
-                                      <td>'.$filas["fecha"].'</td>
+
+
+                                $fech = $filas["fecha"];                                
+                                $fecha = explode("-", $fech);
+                                $anio = $fecha[0];                                
+                                $mes = (int)$fecha[1];
+                                $dia = $fecha[2];
+                                $meses = array (0,"Enero","Febrero","Marzo","Abril","Mayo","Junio ","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+                                $dias = array ("Domingo","Lunes","Martes","Miercoles","Jueves"," Viernes","Sabado");
+                                                                $nombredia = date("w",mktime(0,0,0,$mes,$dia,$anio));
+                                $fmes = $meses[$mes];
+                                $fdia = $dias[$nombredia];
+
+                                if($hoy <= $fech and $filas["hora_inicio"] > date("H:i:s",time()-3*3600))                                
+                                  echo '<tr>
+                                      <td>'.$fdia.', '.$dia.' de '.$fmes.' del '.$anio.'</td>
                                       <td>'.$filas["hora_inicio"].'</td>
                                       <td>'.$filas["lugar"].'</td>
                                       <td>'.$filas["deporte"].'</td>
                                       <td><a class="btn btn-default" href="borrar_partido.php?id='.$filas["id"].'"><font color="black">Borrar</font></a></td>
                                       <td><a href="JugadoresPartido.php?id='.$filas["id"].'"><font color="black">Jugadores</font></a></td>
                                       <tr>';
+                                
                           }
 
                       }
@@ -175,7 +187,7 @@ if(empty($_SESSION["id"])){
 
             <h2>Nuevo Partido</h2>            
 
-            
+            <form method="post" action="insertarPartido.php">
             <dl class="dl-horizontal">
               <dt>Deporte:</dt>
               <dd><input id="deporte" name="deporte" required="required" type="text" placeholder="¿Qué jugaremos?" /></dd>
@@ -226,20 +238,7 @@ if(empty($_SESSION["id"])){
                         echo '<tr><td>No hay datos</td></tr>';
                        else{ 
                             while ($filas = mysql_fetch_assoc($qry)) {
-                            $cont[$x]=$filas["id_partido"];
-                            $x=$x+1;
-                             
-                            //echo $filas["id_partido"];
-
-                                                                      }
-
-                            }
-
-                            //echo $x;
-                            for ($i = 0; $i < $x; $i++) {
-                                    
-                                    $qry2 = mysql_query("SELECT * FROM partido WHERE id=".$cont[$i]."") or die("Error en: $busqueda: " . mysql_error());
-                                    //echo $cont[$i];
+                            $qry2 = mysql_query("SELECT * FROM partido WHERE id=".$filas["id_partido"]."") or die("Error en: $busqueda: " . mysql_error());
                                     while ($filas2 = mysql_fetch_assoc($qry2)) {
                                       echo '<tr>
                                       <td>'.$filas2["fecha"].'</td>
@@ -247,11 +246,13 @@ if(empty($_SESSION["id"])){
                                       <td>'.$filas2["lugar"].'</td>
                                       <td>'.$filas2["deporte"].'</td>
                                       </tr>';
-                                                                          }  
-                               }
+                                    } 
 
+                                                                      }
 
+                            }
 
+                            
                    ?>  
 
                  </tbody>  

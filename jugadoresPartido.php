@@ -174,9 +174,9 @@ xmlhttp.send();
                             </form>
 
                             <br> 
-                            <div id="txtHint"><b>Información Compañero</b></div><td> 
+                            <div id="txtHint"><b>Información Compañero</b></div>
                             <br> 
-                            <button type="submit" class="btn">Agregar</button> </td>    
+                            <button type="submit" class="btn">Agregar</button>     
 
 
                <h3>Total</h3>

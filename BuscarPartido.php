@@ -25,35 +25,40 @@ if(empty($_SESSION["id"])){
     <!-- Custom styles for this template -->
     <link href="css/justified-nav.css" rel="stylesheet">
     <link href="css/carousel.css" rel="stylesheet">
-	<style type="text/css" id="holderjs-style"></style></head>
+	   <style type="text/css" id="holderjs-style"></style></head>
    
     <!-- ajax amigos -->
        <script>
-function showUser(str)
-{
-if (str=="")
-  {
-  document.getElementById("txtHint").innerHTML="";
-  return;
-  } 
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
-    }
-  }
-xmlhttp.open("GET","buscarpornombre.php?q="+str,true);
-xmlhttp.send();
-}
+          function showPartido(str)
+          {
+                if (str.length==0)
+                  {
+
+                  document.getElementById("txtPartidos").innerHTML="";
+                  return;
+                  } 
+
+                if (window.XMLHttpRequest)
+                  {// code for IE7+, Firefox, Chrome, Opera, Safari
+                  xmlhttp=new XMLHttpRequest();
+                  }
+                else
+                  {
+                  // code for IE6, IE5
+                  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+                xmlhttp.onreadystatechange=function()
+                  {
+
+                
+                  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                    {
+                    document.getElementById("txtPartidos").innerHTML=xmlhttp.responseText;
+                    }
+                  }
+                xmlhttp.open("GET","buscarpordeporte.php?q="+str,true);
+                xmlhttp.send();
+          }
 
       </script>
 
@@ -117,135 +122,136 @@ xmlhttp.send();
      
     <!--i segundo menu --> 
     <!--i configurar para cada nav activo en cada caso --> 
-            <div id="wrapper">
-            <link href="css/style.css" rel="stylesheet" type="text/css">
-            <div id="tabContainer">
-              <div id="tabs">
-                <ul>
-                  <li id="tabHeader_1">Buscar</li>
-                </ul>
-              </div>
-              <div id="tabscontent">
-                <div class="tabpage" id="tabpage_1">
-                  <h2>Recomendados segun mi horario</h2>
+<div id="wrapper">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <div id="tabContainer">
+        <div id="tabs">
+            <ul class = "css_tabs">
+              <li id="tabHeader_1">Compatibles</li>
+              <li id="tabHeader_2">Por Fecha</li>
+              <li id="tabHeader_3">Por Deporte</li>
+            </ul>
+        </div>
 
-                  <table class="table">  
-                      <thead><tr><th>Fecha</th><th>Hora</th><th>Lugar</th><th>Deporte</th><th>Opción</th></tr></thead>  
-                      <tbody>  
-                     
-                      <?php
-                            $bloc[100]=null;
-                            $dia[100]=null;
+        <div id="tabscontent">
+            <div class="tabpage" id="tabpage_1">
+                <table class="table">  
+                <thead><tr><th>Fecha</th><th>Hora</th><th>Lugar</th><th>Deporte</th><th></th><th></th></tr></thead>  
+                <tbody>  
+               
+                <?php
+                      $link =mysql_connect("localhost", "root", "a");
 
-                            $x=0;
+                      if (!$link) {
+                          trigger_error('Error al conectar al servidor mysql: ' . mysql_error(),E_USER_ERROR);
+                      }
 
-                            $link =mysql_connect("localhost", "root", "a");
-
-                            if (!$link) {
-                                trigger_error('Error al conectar al servidor mysql: ' . mysql_error(),E_USER_ERROR);
-                            }
-
-                            $db_selected = mysql_select_db("pichangachanga",$link) OR DIE ("Error: No es posible establecer la conexión");
-                            if (!$db_selected) {
-                                trigger_error ('Error al conectar a la base de datos: ' . mysql_error(),E_USER_ERROR);
-                            }
+                      $db_selected = mysql_select_db("pichangachanga",$link) OR DIE ("Error: No es posible establecer la conexión");
+                      if (!$db_selected) {
+                          trigger_error ('Error al conectar a la base de datos: ' . mysql_error(),E_USER_ERROR);
+                      }
 
 
-                            $id = $_SESSION["id"];
-                            
-                            $qry = mysql_query("SELECT * FROM bloque_libre WHERE id_usuario=".$id."") or die("Error en: $busqueda: " . mysql_error());
-                            
-                            if (!$qry)
-                              echo '<tr><td>No hay datos</td></tr>';
-                            else{ 
-                            while ($filas = mysql_fetch_assoc($qry)) {
-                            $bloc[$x]=$filas["inicio"];
-                            $dia[$x]=$filas["dia"];
-                            //echo  $bloc[$x];
-                            //echo  $dia[$x];
-                            $x=$x+1;
-                            //echo $filas["id_partido"];
-                                                                      }
-                                } 
-                            
-                      ?>  
+                      $id = $_SESSION["id"];
+                      $cont = 0;
+                      $qry = mysql_query("SELECT * FROM partido WHERE id_usuario!=".$id."") or die("Error en: $busqueda: " . mysql_error());
+                      $qry2 = mysql_query("SELECT * FROM bloque_libre WHERE id_usuario=".$id."") or die("Error en: $busqueda: " . mysql_error());
+                      $hoy = date("Y-m-d");
+                      for($i=0;$i<mysql_num_rows($qry2);$i++){
+                        $bloques[$i]=mysql_fetch_assoc($qry2);
+                      }
+                      
+                      if (!$qry)
+                        echo '<tr><td>No hay datos</td></tr>';
+                      else if(!$qry2 or mysql_num_rows($qry2)==0)
+                        echo '<tr><td>No has registrado tus bloques libres</td></tr>';                      
+                      else{
+                          
+                          while ($filas = mysql_fetch_assoc($qry)) {
+                                
+                                
+                                $fech = $filas["fecha"];                                
+                                $fecha = explode("-", $fech);
+                                $anio = $fecha[0];                                
+                                $mes = (int)$fecha[1];
+                                $dia = $fecha[2];
+                                $meses = array (0,"Enero","Febrero","Marzo","Abril","Mayo","Junio ","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+                                $dias = array ("Domingo","Lunes","Martes","Miercoles","Jueves"," Viernes","Sabado");
+                                $nombredia = date("w",mktime(0,0,0,$mes,$dia,$anio));
+                                $fmes = $meses[$mes];
+                                $fdia = $dias[$nombredia];
 
-                       </tbody>  
-                    </table>
-                </div>
+                                
+                                if( $hoy < $fech or $hoy == $fech and $filas["hora_inicio"] > date("H:i:s",time()-3*3600)){
+                                      
+                                      foreach($bloques as $bloque){
+                                        if($fdia == $bloque["dia"] and $filas["hora_inicio"] >= $bloque["inicio"] and $filas["hora_inicio"] < $bloque["fin"]) {                                                                     
+                                            echo '<tr>
+                                                <td>'.$fdia.', '.$dia.' de '.$fmes.' del '.$anio.'</td>
+                                                <td>'.$filas["hora_inicio"].'</td>
+                                                <td>'.$filas["lugar"].'</td>
+                                                <td>'.$filas["deporte"].'</td>
+                                                <td>Opciones</td>
+                                                </tr>';
+                                                $cont++;        
+                                                }                                
+                                            
+                                    }
+                                }
+                          }
+                        if($cont == 0)
+                          echo '<tr><td>No hay Partidos para ti</td></tr>';
 
-              <!-- </div> -->
+                      }
+                      
+                ?>  
 
-             <!--Buscar --> 
-<!--             <div id="Buscar"> -->
-             <h2>Personalizada</h2>
-                            <form> 
-                            <p>Nombre: <input type="text" onkeyup="showUser(this.value)">
-                            </form>
-                            <br> 
-                            <div id="txtHint"><b>Por Compañero</b></div><td> 
-                            <br> 
-                            <button type="submit" class="btn">Agregar</button> </td>  
-       
+                </tbody>  
+                </table>  
 
-             <p>Fecha: <input type="date" name="partido" step="1" min="2013-01-01" max="2013-12-31" value="2013-01-01"> <button type="submit" class="btn">Buscar</button>  </p> 
-
-             <p>Deporte: <input type=“search” name=“busqueda”> <button type="submit" class="btn">Buscar</button> </p>
-
-             <h3>Resultados</h3>
-
-                           <table class="table">  
-                      <thead>  
-                        <tr>  
-                          <th>Fecha</th>  
-                          <th>Hora</th>  
-                          <th>Deporte</th>  
-                          <th>Agregar</th>  
-                        </tr>  
-                      </thead>  
-                      <tbody>  
-                        <tr>  
-                          <td>6/10/2013</td>  
-                          <td>12:00 </td>  
-                          <td>Futbol</td>  
-                          <td> <button type="submit" class="btn">Aceptar</button> </td>  
-                        </tr>  
-                      </tbody>  
-                    </table>  
-              </body>  
-          </html>  
-          
-
-
-
-
-             </div>
 
             </div>
-          <script type="text/javascript">
 
+            <!-- </div> -->
 
+            <div class="tabpage" id="tabpage_2">
+
+                <p>Fecha: <input type="date" name="partido" step="1" min="2013-01-01" max="2013-12-31" value="2013-01-01"></input>
+                  <button type="submit" class="btn">Buscar</button>  </p> 
+
+            </div>
+            <div class="tabpage" id="tabpage_3">
+                <form> 
+                <p><h2>Buscar por Nombre:</h2> <input type="text" onkeyup="showPartido(this.value)"></input></p>
+                </form>  
+                 
+                  
+                  
+            </div>
+            
+        </div>
+
+        
        <!-- Jumbotron -->
 
-      <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
-<script type="text/javascript">
-    $('#tabs')
-        .tabs()
-        .addClass('ui-tabs-vertical ui-helper-clearfix');
-
-  </script>
+        <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+        <script type="text/javascript">
+            $('#tabs')
+                .tabs()
+                .addClass('ui-tabs-vertical ui-helper-clearfix');
+        </script>
 	  <!-- end jumbotron -->
-
-
+    <div id="tabscontent"><div id="txtPartidos"></div></div>
+    </div>
       <!-- Site footer -->
-      <div class="footer">
-        <p>© Pichangachanga 2013</p>
-      </div>
+        <div class="footer">
+            <p>© Pichangachanga 2013</p>
+        </div>
 
-    </div> <!-- /container -->
+     <!-- /container -->
 
-
+</div>
 	
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -255,12 +261,6 @@ xmlhttp.send();
     <script src="js/holder.js"></script>    
     <script src="js/tabs_old.js"></script>
     
-
-<script>
-    $(document).ready(function(){
-        $('.carousel').carousel()
-    });
-</script>
   
 
 </body></html>
