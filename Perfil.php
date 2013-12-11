@@ -78,7 +78,7 @@ if(empty($_SESSION["id"])){
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown active">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          PERFIL ?> <b class="caret"></b>
+          PERFIL <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
           <li class="disabled"><a href="Perfil.php">Perfil</a></li>
@@ -117,7 +117,7 @@ if(empty($_SESSION["id"])){
               <dt>Correo:</dt>
               <dd><?php echo $_SESSION["correo"]; ?></dd>
               <dt>Teléfono:</dt>
-              <dd>99999999</dd>
+              <dd><?php echo $_SESSION["telefono"]; ?></dd>
             </dl>
            <h2>Mis Bloques Disponibles</h2>
               <table class="table table-condensed">

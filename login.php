@@ -28,6 +28,7 @@ else{
 	$_SESSION["nombre"]=$R["nombre"];
 	$_SESSION["correo"]=$R["correo"];
 	$_SESSION["password"]=$R["password"];
+	$_SESSION["telefono"]=$R["telefono"];
 	header('Location: Perfil.php');
 }
 
