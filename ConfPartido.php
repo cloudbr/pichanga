@@ -81,7 +81,6 @@ if(empty($_SESSION["id"])){
         </a>
         <ul class="dropdown-menu">
           <li><a href="Perfil.php">Perfil</a></li>
-          <li><a href="">Amigos</a></li>
           <li class="divider"></li>
           <li><a href="logout.php">Cerrar Sesión</a></li>
         </ul>
@@ -103,7 +102,6 @@ if(empty($_SESSION["id"])){
       <div id="tabs">
         <ul>
           <li id="tabHeader_1">Datos del partido</li>
-          <li id="tabHeader_2">Partidos Amigos</li>
           <li id="tabHeader_3">Publicar Facebook</li>
         </ul>
       </div>
@@ -144,7 +142,7 @@ if(empty($_SESSION["id"])){
                                       <td>'.$filas["hora_inicio"].'</td>
                                       <td>'.$filas["lugar"].'</td>
                                       <td>'.$filas["deporte"].'</td>
-                                      <td><a href="borrar_partido.php?id='.$filas["id"].'"><font color="black">Borrar</font></a></td>
+                                      <td><a class="btn btn-default" href="borrar_partido.php?id='.$filas["id"].'"><font color="black">Borrar</font></a></td>
                                       <td><a href="JugadoresPartido.php?id='.$filas["id"].'"><font color="black">Jugadores</font></a></td>
                                       <tr>';
                           }
@@ -188,7 +186,7 @@ if(empty($_SESSION["id"])){
                
                 <?php
                       
-                      $cont[10];
+                      $cont[10]=null;
                       $x=0;
                       $link =mysql_connect("localhost", "root", "a","pichangachanga");
 

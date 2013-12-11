@@ -15,5 +15,6 @@ if (!$db_selected) {
 $id = $_GET["id"];
 
 $qry = mysql_query("DELETE FROM partido WHERE id=".$id."") or die("Error en: " . mysql_error());
-header("Location: ConfPartido.php");  
+header("Location: ConfPartido.php");
+mysql_close($link);  
 ?>

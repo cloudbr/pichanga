@@ -69,7 +69,6 @@ if(empty($_SESSION["id"])){
         </a>
         <ul class="dropdown-menu">
           <li><a href="Perfil.php">Perfil</a></li>
-          <li><a href="#">Amigos</a></li>
           <li class="divider"></li>
           <li><a href="logout.php">Cerrar Sesión</a></li>
         </ul>

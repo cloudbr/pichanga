@@ -20,9 +20,6 @@ $deporte = $_POST["deporte"];
 $n_jugadores = $_POST["max_jugadores"];  
 
 
-
-
-
 $qry = mysql_query("INSERT INTO partido (id_usuario,fecha,hora_inicio,lugar,deporte,jugadores) VALUES ('".$id."','".$fecha."','".$hora."','".$lugar."','".$deporte."','".$n_jugadores."') ") or die("Error" . mysql_error());
 
 

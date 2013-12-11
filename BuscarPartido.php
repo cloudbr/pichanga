@@ -103,7 +103,6 @@ xmlhttp.send();
         </a>
         <ul class="dropdown-menu">
           <li><a href="Perfil.php">Perfil</a></li>
-          <li><a href="#">Amigos</a></li>
           <li class="divider"></li>
           <li><a href="logout.php">Cerrar Sesión</a></li>
         </ul>
@@ -135,8 +134,8 @@ xmlhttp.send();
                       <tbody>  
                      
                       <?php
-                            $bloc[100];
-                            $dia[100];
+                            $bloc[100]=null;
+                            $dia[100]=null;
 
                             $x=0;
 

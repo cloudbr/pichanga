@@ -78,11 +78,10 @@ if(empty($_SESSION["id"])){
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown active">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <?php echo $_SESSION["nombre"]; ?> <b class="caret"></b>
+          PERFIL ?> <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
           <li class="disabled"><a href="Perfil.php">Perfil</a></li>
-          <li class="disabled"><a href="/#Amigos">Amigos</a></li>
           <li class="divider"></li>
           <li><a href="logout.php">Cerrar Sesión</a></li>
         </ul>

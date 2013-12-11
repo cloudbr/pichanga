@@ -119,11 +119,11 @@ xmlhttp.send();
       <!--li><a href="#">PERFIL</a></li-->
       <li class="dropdown active">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          BUSCAR PARTIDO <b class="caret"></b>
+          JUGADORES <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
           <li><a href="ConfPartido.php">Mis Partidos</a></li>
-          <li class="disabled"><a href="BuscarPartido.php">Buscar</a></li>          
+          <li><a href="BuscarPartido.php">Buscar</a></li>          
         </ul>
       </li>
       <li><a href="Mensajes.php">MENSAJES</a></li>  
@@ -136,7 +136,6 @@ xmlhttp.send();
         </a>
         <ul class="dropdown-menu">
           <li><a href="Perfil.php">Perfil</a></li>
-          <li><a href="#">Amigos</a></li>
           <li class="divider"></li>
           <li><a href="logout.php">Cerrar Sesión</a></li>
         </ul>
@@ -167,33 +166,10 @@ xmlhttp.send();
       </div>
 
       <div id="tabscontent">
-        
-          <h2>Información</h2>
-
-
-                <h3>Amigos</h3>
-                <p>Nombre:
-
-                            <form>
-                            <select name="users" onchange="showUser(this.value)">
-                            <option value="">Select a person:</option>
-                            <option value="1">Felipe Navarro</option>
-                            <option value="3">Thenison Encina</option>
-                            </select>
-                            </form>
-                            <br>
-                            <div id="txtHint"><b>Información Amigo</b></div> 
-                            <br> 
-                            <button type="submit" class="btn">Agregar</button> </td>    
-
-
-
-
-
-                <h3>Compañero</h3>
+                
 
                             <form> 
-                            <p>Nombre: <input type="text" onkeyup="showHint(this.value)">
+                            <p><h3>Buscar por Nombre:</h3> <input type="text" onkeyup="showHint(this.value)">
                             </form>
 
                             <br> 
