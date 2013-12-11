@@ -17,10 +17,10 @@ $sql="SELECT * FROM partido WHERE id_usuario!=".$id." AND deporte LIKE '%".$q."%
 
 $result = mysqli_query($con,$sql);
 
-echo '<table class="table">  
+/*echo '<table class="table">  
       <thead><tr><th>Fecha</th><th>Hora</th><th>Lugar</th><th>Deporte</th><th></th><th></th></tr></thead>  
-      <tbody> ';
-
+      <tbody> ';*/
+echo '<div class="panel-group" id="accordion">';
 while($row = mysqli_fetch_array($result)){
 
 
@@ -34,20 +34,60 @@ while($row = mysqli_fetch_array($result)){
                                       $nombredia = date("w",mktime(0,0,0,$mes,$dia,$anio));
       $fmes = $meses[$mes];
       $fdia = $dias[$nombredia];
+      $inscritos = 0;
+
+      //Buscar inscritos
+      $result3 = mysqli_query($con,"SELECT * FROM jugador WHERE id_partido = ".$row["id"]);
+      while($r = mysqli_fetch_array($result3))
+        $inscritos++;
 
       if($hoy <= $fech and $row["hora_inicio"] > date("H:i:s",time()-3*3600)){
           $cont++;
-          echo '<tr>
+          /*echo '<tr>
               <td>'. $row['fecha'] .'</td>
               <td>'. $row['hora_inicio'] . '</td>      
               <td>'. $row['lugar'] . '</td>
               <td>'. $row['deporte'] . '</td>
-              </tr>';
+              </tr>';*/
+          $result2 = mysqli_query($con,"SELECT * FROM usuario WHERE id = ".$row["id_usuario"]);
+          if($dueño = mysqli_fetch_array($result2))
+                if($dueño["telefono"]==0)
+                  $telefono = "No registrado";
+                else
+                  $telefono = $dueño["telefono"];
+
+                echo '<div class="panel panel-success">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse'.$row["id"].'">
+                            <font color="#000000">
+                             '.$row["deporte"].'<br>'.$fdia.', '.$dia.' de '.$fmes.' del '.$anio.'
+                             </font>
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapse'.$row["id"].'" class="panel-collapse collapse out">
+                          <div class="panel-body">
+                            <dl class="dl-horizontal">
+                              <dt>Creador:</dt>
+                              <dd>'.$dueño["nombre"].'</dd>
+                              <dt>Telefono:</dt>
+                              <dd>'.$telefono.'</dd>
+                              <dt>Lugar</dt>
+                              <dd>'.$row["lugar"].'</dd>
+                              <dt>Hora Inicio</dt>
+                              <dd>'.$row["hora_inicio"].'</dd>
+                              <dt>Jugadores Faltantes</dt>
+                              <dd>'.($row["jugadores"]-$inscritos).'</dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </div>';
             }
       }
   
 if($cont == 0)
-  echo "<tr><td>No hay resultados vigentes.</td></tr>";
-echo "</tbody></table>";
+  echo "No hay resultados vigentes";
+echo "</div>";
 mysqli_close($con);
 ?>

@@ -167,8 +167,7 @@ if(empty($_SESSION["id"])){
                         echo '<tr><td>No has registrado tus bloques libres</td></tr>';                      
                       else{
                           
-                          while ($filas = mysql_fetch_assoc($qry)) {
-                                
+                          while ($filas = mysql_fetch_assoc($qry)) {                                
                                 
                                 $fech = $filas["fecha"];                                
                                 $fecha = explode("-", $fech);
@@ -186,7 +185,8 @@ if(empty($_SESSION["id"])){
                                       
                                       foreach($bloques as $bloque){
                                         if($fdia == $bloque["dia"] and $filas["hora_inicio"] >= $bloque["inicio"] and $filas["hora_inicio"] < $bloque["fin"]) {                                                                     
-                                            echo '<tr>
+                                            echo '
+                                                <tr>
                                                 <td>'.$fdia.', '.$dia.' de '.$fmes.' del '.$anio.'</td>
                                                 <td>'.$filas["hora_inicio"].'</td>
                                                 <td>'.$filas["lugar"].'</td>
@@ -199,7 +199,7 @@ if(empty($_SESSION["id"])){
                                     }
                                 }
                           }
-                        if($cont == 0)
+                      if($cont == 0)
                           echo '<tr><td>No hay Partidos para ti</td></tr>';
 
                       }
@@ -240,9 +240,10 @@ if(empty($_SESSION["id"])){
             $('#tabs')
                 .tabs()
                 .addClass('ui-tabs-vertical ui-helper-clearfix');
+            
         </script>
 	  <!-- end jumbotron -->
-    <div id="tabscontent"><div id="txtPartidos"></div></div>
+    <div id="txtPartidos"></div>
     </div>
       <!-- Site footer -->
         <div class="footer">

@@ -181,7 +181,7 @@ if(empty($_SESSION["id"])){
                                       <td>'.$filas["hora_inicio"].'</td>
                                       <td>'.$filas["lugar"].'</td>
                                       <td>'.$filas["deporte"].'</td>
-                                      <td><a class="btn btn-default" href="borrar_partido.php?id='.$filas["id"].'"><font color="black">Borrar</font></a></td>
+                                      <td><a class="btn btn-default" href="borrar_partido.php?id='.$filas["id"].'"><font color="black">Suspender</font></a></td>
                                       <td><a href="JugadoresPartido.php?id='.$filas["id"].'"><font color="black">Jugadores</font></a></td>
                                       <tr>';
                                 

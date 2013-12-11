@@ -12,9 +12,19 @@ if (!$db_selected) {
 
 
 
-$id = $_GET["id"];
+$id_partido = $_GET["id"];
 
-$qry = mysql_query("DELETE FROM partido WHERE id=".$id."") or die("Error en: " . mysql_error());
+$qry1= mysql_query("SELECT * FROM jugador WHERE id_partido = ".$id_partido."") or die("Error en: " . mysql_error());
+$data=mysql_num_rows($qry1);
+if($data > 0)
+	while($j = mysql_fetch_assoc($qry1)){
+		$qry2 = mysql_query("DELETE FROM jugador WHERE id=".$id_partido."") or die("Error en: " . mysql_error());
+	}
+		
+
+$qry2 = mysql_query("DELETE FROM partido WHERE id=".$id_partido."") or die("Error en: " . mysql_error());
+
+
 header("Location: ConfPartido.php");
 mysql_close($link);  
 ?>

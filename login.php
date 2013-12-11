@@ -21,7 +21,7 @@ $qry = mysql_query("SELECT * FROM usuario WHERE correo = '".$mail."' AND passwor
 
 if(!$R){
 	echo "Error";
-	header('Location: Index.html');
+	header('Location: Index.php');
 }
 else{
 	$_SESSION["id"]=$R["id"];
@@ -29,7 +29,7 @@ else{
 	$_SESSION["correo"]=$R["correo"];
 	$_SESSION["password"]=$R["password"];
 	$_SESSION["telefono"]=$R["telefono"];
-	header('Location: Perfil.php');
+	header('Location: Inicio.php');
 }
 
 mysql_close($link);

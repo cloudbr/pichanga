@@ -4,6 +4,7 @@ if(!empty($_SESSION["id"])){
   header("Location: Perfil.php");
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en" class="no-js"> <!--<![endif]-->
     <head>

@@ -20,7 +20,7 @@ if(empty($_SESSION["id"])){
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
-
+    <link href="css/carousel.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/justified-nav.css" rel="stylesheet">
 	<style type="text/css" id="holderjs-style"></style>
@@ -49,7 +49,6 @@ if(empty($_SESSION["id"])){
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
       <li class="active"><a href="Inicio.php">INICIO</a></li>
-      <!--li><a href="#">PERFIL</a></li-->
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           PARTIDOS <b class="caret"></b>
@@ -81,6 +80,8 @@ if(empty($_SESSION["id"])){
 <!-- END MENU -->
  <!-- Carousel
     ================================================== -->
+<div id="wrapper" class="responsive">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -102,7 +103,7 @@ if(empty($_SESSION["id"])){
           <img src="img/Seleccion2.png" alt="Third slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Bienvenidos.</h1>
+              <h1><font color="#000000">Bienvenidos.</font></h1>
             </div>
           </div>
         </div>
@@ -111,7 +112,6 @@ if(empty($_SESSION["id"])){
           <div class="container">
             <div class="carousel-caption">
               <h1>Bienvenidos.</h1>
-
             </div>
           </div>
         </div>
@@ -120,7 +120,7 @@ if(empty($_SESSION["id"])){
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div><!-- /.carousel -->
 
-          
+   </div>
 
 
 <script src="js/jquery-2.0.3.js"></script>
