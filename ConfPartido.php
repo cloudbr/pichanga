@@ -7,6 +7,9 @@ if(empty($_SESSION["id"])){
 }
 
 
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en"><head>
@@ -39,7 +42,14 @@ if(empty($_SESSION["id"])){
     <![endif]-->
   </head>
 
-
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=612348912157757";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
   <body>
 
@@ -265,25 +275,16 @@ if(empty($_SESSION["id"])){
 
         <div class="tabpage" id="tabpage_3">
              
-          <h2>Resumen</h2>
+          <h2>Publicar</h2>
 
-            <table class="table">  
-              <thead><tr><th>Fecha</th><th>Lugar</th><th>Deporte</th></tr></thead>  
-                <tbody></tbody>  
-            </table>  
+           <div class="fb-share-button" data-href="http://190.209.194.163/Index.php" data-type="button"></div>
+
+           <fb:share-button href="http://190.209.194.163/Index.php" type="button"></fb:share-button>
 
 
-          <h3>Jugadores</h3>
 
-          <table class="table">  
-            <thead><tr><th>Nombre</th><th>Apellido</th></tr></thead>  
-            <tbody></tbody> 
-          </table> 
-          <br>
 
-          <div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-type="button_count"></div>
 
-          <p><button type="button" class="btn btn-primary" disabled="disabled" >Facebook</button></p>
         </div>
                 
                 
