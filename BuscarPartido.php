@@ -142,7 +142,7 @@ if(empty($_SESSION["id"])){
         <div id="tabscontent">
             <div class="tabpage" id="tabpage_1">
                 <table class="table">  
-                <thead><tr><th>Fecha</th><th>Hora</th><th>Lugar</th><th>Deporte</th><th></th><th></th></tr></thead>  
+                <thead><tr><th>Creador</th><th>Fecha/Hora</th><th>Lugar</th><th>Deporte</th><th>Confirmados</th><th></th></tr></thead>  
                 <tbody>  
                
                 <?php
@@ -162,13 +162,14 @@ if(empty($_SESSION["id"])){
                       $cont = 0;
                       $qry = mysql_query("SELECT * FROM partido WHERE id_usuario!=".$id."") or die("Error en: $busqueda: " . mysql_error());
                       $qry2 = mysql_query("SELECT * FROM bloque_libre WHERE id_usuario=".$id."") or die("Error en: $busqueda: " . mysql_error());
+                      
                       $hoy = date("Y-m-d");
                       for($i=0;$i<mysql_num_rows($qry2);$i++){
                         $bloques[$i]=mysql_fetch_assoc($qry2);
                       }
                       
-                      if (!$qry)
-                        echo '<tr><td>No hay datos</td></tr>';
+                      if (!$qry or mysql_num_rows($qry)==0)
+                        echo '<tr><td>No hay Partidos</td></tr>';
                       else if(!$qry2 or mysql_num_rows($qry2)==0)
                         echo '<tr><td>No has registrado tus bloques libres</td></tr>';                      
                       else{
@@ -186,18 +187,21 @@ if(empty($_SESSION["id"])){
                                 $fmes = $meses[$mes];
                                 $fdia = $dias[$nombredia];
 
-                                
+                                $qry3 = mysql_query("SELECT * FROM jugador WHERE id_partido=".$filas["id"]." AND estado=1");
+
                                 if( $hoy < $fech or $hoy == $fech and $filas["hora_inicio"] > date("H:i:s",time()-3*3600)){
                                       
                                       foreach($bloques as $bloque){
-                                        if($fdia == $bloque["dia"] and $filas["hora_inicio"] >= $bloque["inicio"] and $filas["hora_inicio"] < $bloque["fin"]) {                                                                     
+                                        if($fdia == $bloque["dia"] and $filas["hora_inicio"] >= $bloque["inicio"] and $filas["hora_inicio"] < $bloque["fin"]) {  
+                                            $resp = mysql_query("SELECT * FROM usuario WHERE id=".$filas["id_usuario"]);    
+                                            $user = mysql_fetch_assoc($resp);                                                               
                                             echo '
                                                 <tr>
-                                                <td>'.$fdia.', '.$dia.' de '.$fmes.' del '.$anio.'</td>
-                                                <td>'.$filas["hora_inicio"].'</td>
+                                                <td>'.$user["nombre"].'</td>
+                                                <td>'.$fdia.' '.$dia.' de '.$fmes.', '.$anio.'/'.$filas["hora_inicio"].'</td>
                                                 <td>'.$filas["lugar"].'</td>
                                                 <td>'.$filas["deporte"].'</td>
-                                                <td>Opciones</td>
+                                                <td>'.mysql_num_rows($qry3).'/'.$filas["jugadores"].'</td>
                                                 </tr>';
                                                 $cont++;        
                                                 }                                
@@ -229,7 +233,7 @@ if(empty($_SESSION["id"])){
             </div>
             <div class="tabpage" id="tabpage_3">
                 <form> 
-                <p><h2>Buscar por Nombre:</h2> <input type="text" onkeyup="showPartido(this.value)"></input></p>
+                <p><h2>Buscar por Deporte:</h2> <input type="text" onkeyup="showPartido(this.value)"></input></p>
                 </form>  
                  
                   
