@@ -20,7 +20,7 @@ $telefono = $_POST["numeroRegistro"];
 $qry = mysql_query("INSERT INTO usuario (nombre,correo,password,telefono) VALUES ('".$nombre."','".$correo."','".$clave."','".$telefono."') ") or die("Error" . mysql_error());
 
 
-
+mysql_close($link);
 
 header("Location: Index.php");          
 ?>

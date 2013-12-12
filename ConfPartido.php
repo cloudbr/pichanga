@@ -7,9 +7,6 @@ if(empty($_SESSION["id"])){
 }
 
 
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en"><head>
@@ -31,7 +28,11 @@ if(empty($_SESSION["id"])){
 
     <!-- Custom styles for this template -->
     <link href="css/justified-nav.css" rel="stylesheet">
-
+    <script  type="text/javascript">
+      function getFecha(){
+                return  new date();
+                }
+    </script>
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -141,7 +142,7 @@ if(empty($_SESSION["id"])){
       <div id="tabscontent">
         <div class="tabpage" id="tabpage_1">
           <h2>Mis Partidos</h2>
-
+              
 
               <table class="table">  
                 <thead><tr><th>Fecha</th><th>Hora</th><th>Lugar</th><th>Deporte</th><th></th><th></th></tr></thead>  
@@ -161,15 +162,14 @@ if(empty($_SESSION["id"])){
 
 
                       $id = $_SESSION["id"];
-                      $hoy = date("Y-m-d");
+                      $hoy = date("Y-m-d",time()-3*3600);
                       $qry = mysql_query("SELECT * FROM partido WHERE id_usuario=".$id."") or die("Error en: $busqueda: " . mysql_error());
                       
-                      if (!$qry)
+                      if (!$qry or mysql_num_rows($qry)==0)
                         echo '<tr><td>No hay datos</td></tr>';
                       else{
                           
                           while ($filas = mysql_fetch_assoc($qry)) {
-
 
                                 $fech = $filas["fecha"];                                
                                 $fecha = explode("-", $fech);
@@ -178,11 +178,10 @@ if(empty($_SESSION["id"])){
                                 $dia = $fecha[2];
                                 $meses = array (0,"Enero","Febrero","Marzo","Abril","Mayo","Junio ","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
                                 $dias = array ("Domingo","Lunes","Martes","Miercoles","Jueves"," Viernes","Sabado");
-                                                                $nombredia = date("w",mktime(0,0,0,$mes,$dia,$anio));
+                                $nombredia = date("w",mktime(0,0,0,$mes,$dia,$anio));
                                 $fmes = $meses[$mes];
                                 $fdia = $dias[$nombredia];
-
-                                if($hoy <= $fech and $filas["hora_inicio"] > date("H:i:s",time()-3*3600))                                
+                                if($hoy < $fech or $hoy == $fech and $filas["hora_inicio"] > date("H:i:s",time()-3*3600))                                                       
                                   echo '<tr>
                                       <td>'.$fdia.', '.$dia.' de '.$fmes.' del '.$anio.'</td>
                                       <td>'.$filas["hora_inicio"].'</td>
@@ -190,7 +189,7 @@ if(empty($_SESSION["id"])){
                                       <td>'.$filas["deporte"].'</td>
                                       <td><a class="btn btn-default" href="borrar_partido.php?id='.$filas["id"].'"><font color="black">Suspender</font></a></td>
                                       <td><a href="JugadoresPartido.php?id='.$filas["id"].'"><font color="black">Jugadores</font></a></td>
-                                      <tr>';
+                                      </tr>';
                                 
                           }
 
@@ -223,18 +222,66 @@ if(empty($_SESSION["id"])){
               
         </div>
                 
-        <div class="tabpage" id="tabpage_2">
-          <h2>Partidos Amigos</h2>
-          
-
+        <div class="tabpage" id="tabpage_2">         
+            <h3>En espera de confirmacion</h3>
              <table class="table">  
                 <thead><tr><th>Fecha</th><th>Hora</th><th>Lugar</th><th>Deporte</th></tr></thead>  
                 <tbody>  
                
                 <?php
                       
-                      $cont[10]=null;
-                      $x=0;
+                      $link =mysql_connect("localhost", "root", "a","pichangachanga");
+
+                      if (!$link) {
+                          trigger_error('Error al conectar al servidor mysql: ' . mysql_error(),E_USER_ERROR);
+                      }
+
+                      $db_selected = mysql_select_db("pichangachanga",$link) OR DIE ("Error: No es posible establecer la conexión");
+                      if (!$db_selected) {
+                          trigger_error ('Error al conectar a la base de datos: ' . mysql_error(),E_USER_ERROR);
+                      }
+
+                      $cont = 0;
+                      $id = $_SESSION["id"];
+                      
+                      $qry = mysql_query("SELECT * FROM jugador WHERE id_usuario=".$id."") or die("Error en: $busqueda: " . mysql_error());
+                      
+                       if (!$qry or mysql_num_rows($qry)==0)
+                        echo '<tr><td>No hay datos</td></tr>';
+                       else{ 
+                            while ($filas = mysql_fetch_assoc($qry)) {
+                                if($filas["estado"]==0){
+                                    $qry2 = mysql_query("SELECT * FROM partido WHERE id=".$filas["id_partido"]."") or die("Error en: $busqueda: " . mysql_error());
+                                    while ($filas2 = mysql_fetch_assoc($qry2)) {
+                                      echo '<tr>
+                                      <td>'.$filas2["fecha"].'</td>
+                                      <td>'.$filas2["hora_inicio"].'</td>
+                                      <td>'.$filas2["lugar"].'</td>
+                                      <td>'.$filas2["deporte"].'</td>
+                                      </tr>';
+                                      $cont++;
+                                    }
+                                  }
+                                }
+
+
+                            }
+                            if($cont == 0)
+                                echo '<tr><td>No hay partidos pendientes.</td></tr>';
+                        
+
+                  mysql_close($link);   
+                   ?>  
+
+                 </tbody>  
+              </table>
+
+              <h3>Confirmados</h3>
+             <table class="table">  
+                <thead><tr><th>Fecha</th><th>Hora</th><th>Lugar</th><th>Deporte</th></tr></thead>  
+                <tbody>  
+               
+                <?php
                       $link =mysql_connect("localhost", "root", "a","pichangachanga");
 
                       if (!$link) {
@@ -248,14 +295,15 @@ if(empty($_SESSION["id"])){
 
 
                       $id = $_SESSION["id"];
-                      
+                      $cont = 0;
                       $qry = mysql_query("SELECT * FROM jugador WHERE id_usuario=".$id."") or die("Error en: $busqueda: " . mysql_error());
                       
-                       if (!$qry)
+                       if (!$qry or mysql_num_rows($qry)==0)
                         echo '<tr><td>No hay datos</td></tr>';
                        else{ 
                             while ($filas = mysql_fetch_assoc($qry)) {
-                            $qry2 = mysql_query("SELECT * FROM partido WHERE id=".$filas["id_partido"]."") or die("Error en: $busqueda: " . mysql_error());
+                            if($filas["estado"]==1){
+                                    $qry2 = mysql_query("SELECT * FROM partido WHERE id=".$filas["id_partido"]."") or die("Error en: $busqueda: " . mysql_error());
                                     while ($filas2 = mysql_fetch_assoc($qry2)) {
                                       echo '<tr>
                                       <td>'.$filas2["fecha"].'</td>
@@ -263,17 +311,22 @@ if(empty($_SESSION["id"])){
                                       <td>'.$filas2["lugar"].'</td>
                                       <td>'.$filas2["deporte"].'</td>
                                       </tr>';
+                                      $cont++;
                                     } 
+                                  }
 
-                                                                      }
+                             }
 
                             }
+                            if($cont == 0)
+                                echo '<tr><td>No hay partidos confirmados.</td></tr>';
 
-                            
+                  mysql_close($link);   
                    ?>  
 
                  </tbody>  
               </table>
+
 
 
       

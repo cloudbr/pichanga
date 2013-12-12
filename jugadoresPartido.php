@@ -134,7 +134,7 @@ xmlhttp.send();
         </a>
         <ul class="dropdown-menu">
           <li><a href="Mensajes.php">Entrada</a></li> 
-          <li><a href="#">Redactar</a></li> 
+          <li><a href="Redactar.php">Redactar</a></li> 
         </ul>   
     </ul>
  
@@ -210,7 +210,7 @@ xmlhttp.send();
                       $estado = "";
                       $tel = "No hay registro";
                       $cont = 0;
-                      $qry = mysql_query("SELECT * FROM jugador WHERE id_partido=".$id_partido."") or die("Error en: $busqueda: " . mysql_error());
+                      $qry = mysql_query("SELECT * FROM jugador WHERE id_partido=".$id_partido) or die("Error en: " . mysql_error());
                       
                       while($row = mysql_fetch_assoc($qry)){
                         if($row["estado"]== 0){
@@ -223,7 +223,7 @@ xmlhttp.send();
                         if($row["estado"] == 2)
                           continue;
 
-                        $qry2 = mysql_query("SELECT * FROM usuario WHERE id=".$row["id_usuario"]."") or die("Error en: $busqueda: " . mysql_error());
+                        $qry2 = mysql_query("SELECT * FROM usuario WHERE id=".$row["id_usuario"]) or die("Error en: " . mysql_error());
                         $jugador = mysql_fetch_assoc($qry2);
 
                         if($jugador["telefono"]!=0)

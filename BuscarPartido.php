@@ -25,7 +25,7 @@ if(empty($_SESSION["id"])){
     <!-- Custom styles for this template -->
     <link href="css/justified-nav.css" rel="stylesheet">
     <link href="css/carousel.css" rel="stylesheet">
-	   <style type="text/css" id="holderjs-style"></style></head>
+	 <style type="text/css" id="holderjs-style"></style>
    
     <!-- ajax amigos -->
        <script>
@@ -104,7 +104,7 @@ if(empty($_SESSION["id"])){
         </a>
         <ul class="dropdown-menu">
           <li><a href="Mensajes.php">Entrada</a></li> 
-          <li><a href="#">Redactar</a></li> 
+          <li><a href="Redactar.php">Redactar</a></li> 
         </ul> 
     </ul>
  
@@ -207,6 +207,7 @@ if(empty($_SESSION["id"])){
                           }
                       if($cont == 0)
                           echo '<tr><td>No hay Partidos para ti</td></tr>';
+                      mysql_close($link);
 
                       }
                       

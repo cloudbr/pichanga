@@ -14,9 +14,13 @@ if (!$db_selected) {
     trigger_error ('Error al conectar a la base de datos: ' . mysql_error(),E_USER_ERROR);
 }
 
+$msn = $_SESSION["nombre"].' te ha agregado a un partido<br>
+<a class="btn btn-success" href="confirmarAsistencia.php?emisor='.$_SESSION["id"].'&idpartido='.$part.'">
+<font color="black">Confirmar</font></a>';
+
 $qry = mysql_query("INSERT INTO jugador (id_partido,id_usuario,estado) VALUES(".$part.",".$user.",0)" );
 
-$qry = mysql_query("INSERT INTO mensajes (id_receptor,id_emisor,fecha,msn,estado) VALUES(".$user.",".$_SESSION["id"].",'".$hoy."','".$_SESSION["nombre"]." te ha agregado a un partido',0)");
+$qry = mysql_query("INSERT INTO mensajes (id_receptor,id_emisor,fecha,msn,estado) VALUES(".$user.",".$_SESSION["id"].",'".$hoy."','".$msn."',0)");
 
 mysql_close($link);
 header("Location: jugadoresPartido.php?id=".$part);

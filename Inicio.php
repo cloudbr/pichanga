@@ -64,7 +64,7 @@ if(empty($_SESSION["id"])){
         </a>
         <ul class="dropdown-menu">
           <li><a href="Mensajes.php">Entrada</a></li> 
-          <li><a href="#">Redactar</a></li> 
+          <li><a href="Redactar.php">Redactar</a></li> 
         </ul>  
     </ul>
  

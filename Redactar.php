@@ -102,11 +102,11 @@ xmlhttp.send();
       </li>
       <li class="dropdown active">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-           ENTRADA <b class="caret"></b>
+           REDACTAR <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li class="active"><a href="Mensajes.php">Entrada</a></li> 
-          <li><a href="redactar.php">Redactar</a></li> 
+          <li><a href="Mensajes.php">Entrada</a></li> 
+          <li class="active"><a href="redactar.php">Redactar</a></li> 
         </ul>
     </ul>
  

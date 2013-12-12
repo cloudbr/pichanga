@@ -76,8 +76,8 @@ while($row = mysqli_fetch_array($result)){
                               <dd>'.$row["lugar"].'</dd>
                               <dt>Hora Inicio</dt>
                               <dd>'.$row["hora_inicio"].'</dd>
-                              <dt>Jugadores Faltantes</dt>
-                              <dd>'.($row["jugadores"]-$inscritos).'</dd>
+                              <dt>Inscritos</dt>
+                              <dd>'.$inscritos.'/'.$row["jugadores"].'</dd>
                             </dl>
                           </div>
                         </div>
